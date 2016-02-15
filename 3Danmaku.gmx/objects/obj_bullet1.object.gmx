@@ -25,8 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>theta = pi/2;
-</string>
+            <string></string>
           </argument>
         </arguments>
       </action>
@@ -48,10 +47,19 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x = (window_get_width()/2) - (sin(global.theta-theta)*(window_get_width()/2));
-y = y;
-colourForBlend = 255-((0.5+(cos(global.theta-theta))/2)*150);
+            <string>x = (window_get_width()/2) - (sin(global.theta-theta)*(window_get_width()*2/5));
+
+y = y + dy;
+if (y &gt; window_get_height()) y = 0;
+
+colourForBlend = 255-((0.5-(cos(global.theta-theta))/2)*150);
 image_blend = make_color_rgb(colourForBlend, colourForBlend, colourForBlend);
+
+theta = theta + dtheta;
+if (theta &gt; 2*pi) theta -= 2*pi;
+if (theta &lt; 0) theta += 2*pi;
+
+depth = -(cos(global.theta-theta))*100;
 </string>
           </argument>
         </arguments>
@@ -74,10 +82,8 @@ image_blend = make_color_rgb(colourForBlend, colourForBlend, colourForBlend);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_colour(c_white);
-draw_text(64, 64, "global theta: " + string(global.theta));
-draw_text(64, 96, "this theta: " + string(theta));
-draw_text(64, 128, "blend: " + string(colourForBlend));
+            <string>draw_set_colour(c_black);
+draw_text(x,y,string(theta));
 </string>
           </argument>
         </arguments>

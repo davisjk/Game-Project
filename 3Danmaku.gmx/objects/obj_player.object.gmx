@@ -28,8 +28,45 @@
             <string>background_htiled[0] = true;
 
 global.theta = 0;
+global.hits = 0;
 movingLeft = false;
 movingRight = false;
+canBeHit = true;
+depth = -1000;
+
+var newTheta;
+newTheta = 0;
+repeat(4) {
+    with (instance_create(0, 0, obj_bullet1)) {
+        theta = newTheta;
+        dtheta = pi/180;
+        dy = window_get_height()/200;
+    }
+    newTheta += pi/4;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>canBeHit = true;
 </string>
           </argument>
         </arguments>
@@ -61,6 +98,82 @@ movingRight = false;
 } else {
     background_hspeed[0] = 0;
 }
+
+if (global.theta &gt; 2*pi) global.theta -= 2*pi;
+if (global.theta &lt; 0) global.theta += 2*pi;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_bullet1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if ((abs(global.theta - other.theta) &lt; pi/2 || abs(global.theta - other.theta) &gt; 3*pi/2) &amp;&amp; canBeHit) {
+    global.hits += 1;
+    canBeHit = false;
+    alarm[0] = 5;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="5" enumb="87">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>y -= 10;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="5" enumb="83">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>y += 10;
 </string>
           </argument>
         </arguments>
@@ -107,6 +220,31 @@ movingRight = false;
           <argument>
             <kind>1</kind>
             <string>movingLeft = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_set_colour(c_white);
+draw_text(32, 32, "Global theta: " + string(global.theta));
+draw_text(32, 64, "Global hits:  " + string(global.hits));
 </string>
           </argument>
         </arguments>
