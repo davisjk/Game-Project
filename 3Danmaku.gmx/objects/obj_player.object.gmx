@@ -29,14 +29,16 @@
 
 global.theta = 0;
 global.hits = 0;
+global.screenWidthRatio = 2/5;
 movingLeft = false;
 movingRight = false;
 canBeHit = true;
-depth = -1000;
+depth = 1000;
+x = window_get_width()/2;
 
 var newTheta;
 newTheta = 0;
-repeat(4) {
+repeat(8) {
     with (instance_create(0, 0, obj_bullet1)) {
         theta = newTheta;
         dtheta = pi/180;
@@ -44,6 +46,9 @@ repeat(4) {
     }
     newTheta += pi/4;
 }
+
+instance_create(0, 0, obj_gray_wall);
+instance_create(window_get_width()*(1+global.screenWidthRatio)/2, 0, obj_gray_wall);
 </string>
           </argument>
         </arguments>
@@ -151,6 +156,7 @@ if (global.theta &lt; 0) global.theta += 2*pi;
           <argument>
             <kind>1</kind>
             <string>y -= 10;
+while (y &lt; 0) y++;
 </string>
           </argument>
         </arguments>
@@ -174,6 +180,7 @@ if (global.theta &lt; 0) global.theta += 2*pi;
           <argument>
             <kind>1</kind>
             <string>y += 10;
+while (y &gt; window_get_height()) y--;
 </string>
           </argument>
         </arguments>
