@@ -45,6 +45,8 @@ repeat(8) {
         theta = newTheta;
         dtheta = pi/180;
         dy = window_get_height()/200;
+        image_index = newTheta/pi*4;
+        image_speed = 0;
     }
     newTheta += pi/4;
 }
