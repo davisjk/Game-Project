@@ -63,8 +63,8 @@ if (theta &lt; 0) theta += 2*pi;
 
 depth = -(cos(global.theta-theta))*100;
 
-image_xscale = (cos(global.theta-theta)+3);
-image_yscale = (cos(global.theta-theta)+3);
+image_xscale = (cos(global.theta-theta)+3)/2;
+image_yscale = image_xscale;
 </string>
           </argument>
         </arguments>

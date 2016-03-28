@@ -33,9 +33,14 @@
     <background>background\bkg_stars13</background>
   </backgrounds>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\scr_bullet_create.gml</script>
+  </scripts>
   <objects name="objects">
     <object>objects\obj_player</object>
     <object>objects\obj_bullet1</object>
+    <object>objects\obj_bullet_enemy</object>
+    <object>objects\obj_bullet_player</object>
     <object>objects\obj_gray_wall</object>
   </objects>
   <rooms name="rooms">

@@ -35,13 +35,14 @@ global.screenWidthRatio = 2/5;
 movingLeft = false;
 movingRight = false;
 canBeHit = true;
-depth = 1000;
+canPew = true;
+depth = 10;
 x = window_get_width()/2;
 
 var newTheta;
 newTheta = 0;
 repeat(8) {
-    with (instance_create(0, 0, obj_bullet1)) {
+    with (instance_create(0, 0, obj_bullet_enemy)) {
         theta = newTheta;
         dtheta = pi/180;
         dy = window_get_height()/200;
@@ -53,6 +54,29 @@ repeat(8) {
 
 instance_create(0, 0, obj_gray_wall);
 instance_create(window_get_width()*(1+global.screenWidthRatio)/2, 0, obj_gray_wall);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>canPew = true;
 </string>
           </argument>
         </arguments>
@@ -115,7 +139,7 @@ if (global.theta &lt; 0) global.theta += 2*pi;
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_bullet1">
+    <event eventtype="4" ename="obj_bullet_enemy">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -135,7 +159,7 @@ if (global.theta &lt; 0) global.theta += 2*pi;
             <string>if ((abs(global.theta - other.theta) &lt; pi/2 || abs(global.theta - other.theta) &gt; 3*pi/2) &amp;&amp; canBeHit) {
     global.hits += 1;
     canBeHit = false;
-    alarm[0] = 5;
+    alarm[0] = 30;
 }
 </string>
           </argument>
@@ -231,6 +255,35 @@ while (y &gt; window_get_height()) y--;
           <argument>
             <kind>1</kind>
             <string>movingLeft = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="5" enumb="32">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var new_bullet;
+if (canPew) {
+    new_bullet = scr_bullet_create(global.theta, 0, y-sprite_height-17, -10, 5, obj_bullet_player, 3);
+    canPew = false;
+    alarm[1] = 5;
+}
+
 </string>
           </argument>
         </arguments>
