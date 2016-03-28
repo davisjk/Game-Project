@@ -1,4 +1,4 @@
-///script_bullet_create(bullet_theta, bullet_dtheta, bullet_y, bullet_dy, bullet_size, bullet_obj, bullet_image_index)
+///script_bullet_create(bullet_theta, bullet_dtheta, bullet_y, bullet_dy, bullet_size, bullet_obj, bullet_image_index, bullet_damage)
 
 var new_bullet;
 
@@ -11,6 +11,7 @@ with (new_bullet) {
     image_speed = 0;
     image_xscale = image_xscale*argument4;
     image_yscale = image_yscale*argument4;
+    damage = argument7;
 }
 
 return new_bullet;
