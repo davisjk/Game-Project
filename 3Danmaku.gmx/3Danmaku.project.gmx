@@ -16,6 +16,8 @@
     <sprite>sprites\spr_planet</sprite>
     <sprite>sprites\spr_heart</sprite>
     <sprite>sprites\spr_gray_wall</sprite>
+    <sprite>sprites\spr_outline</sprite>
+    <sprite>sprites\spr_rect</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bkg_stars1</background>
@@ -36,7 +38,12 @@
   <scripts name="scripts">
     <script>scripts\scr_bullet_create.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\fnt_big_num</font>
+  </fonts>
   <objects name="objects">
+    <object>objects\obj_healthbar_outline</object>
+    <object>objects\obj_healthbar_fill</object>
     <object>objects\obj_player</object>
     <object>objects\obj_bullet1</object>
     <object>objects\obj_bullet_enemy</object>
