@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>image_xscale = window_get_width()*(1-global.screenWidthRatio)/2;
 image_yscale = window_get_height();
-depth = -50;
+depth = 1000;
 </string>
           </argument>
         </arguments>

@@ -44,7 +44,7 @@ alarm[1] = attackSpeed;
 for(i = 0; i &lt; playerHp; i++)
 {
     heart[i] = instance_create(room_width - 50, 400, obj_health_heart);
-    heart[i].x -= heart[i].sprite_width*(playerHp-i);
+    heart[i].x -= heart[i].sprite_width*(playerHp-i)*3/2;
 }
 
 alarm[9] = room_speed;
@@ -339,19 +339,17 @@ if (canPew) {
           <argument>
             <kind>1</kind>
             <string>draw_set_colour(c_white);
-draw_text(32, 32, "Global theta: " + string(global.theta));
-draw_text(32, 64, "Global hits:  " + string(global.hits));
 
-percision = "";
-if (global.time % 60 &lt; 10) percision = "0";
+precision = "";
+if (global.time % 60 &lt; 10) precision = "0";
 
-draw_text(32, 96, "Time:  " + string(floor(global.time / 60)) + ":" + percision + string(global.time % 60));
+draw_text(32, 32, "Time:  " + string(floor(global.time / 60)) + ":" + precision + string(global.time % 60));
 
-draw_text(32, 128, "Score:  " + string(global.score));
+draw_text(32, 64, "Score:  " + string(global.score));
 
-draw_text(1250, 290, "PLAYER HEALTH");
+draw_text(room_width - 320, 320, "PLAYER HEALTH");
 
-draw_text(1250, 350, "AMMO");
+draw_text(room_width - 320, 480, "AMMO");
 
 </string>
           </argument>
