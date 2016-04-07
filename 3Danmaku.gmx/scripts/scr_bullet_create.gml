@@ -9,7 +9,7 @@ with (new_bullet) {
     dy = argument3;
     image_index = argument6;
     image_speed = 0;
-    image_xscale = image_xscale*argument4;
+    image_xscale = argument4;
     image_yscale = image_yscale*argument4;
     damage = argument7;
 }

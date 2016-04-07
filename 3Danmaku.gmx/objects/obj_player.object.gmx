@@ -160,7 +160,9 @@ if (global.theta &gt; 2*pi) global.theta -= 2*pi;
 if (global.theta &lt; 0) global.theta += 2*pi;
 
 if(playerHp == 0) {
-    room_restart();
+    playerHp = 3;
+    global.victory = false;
+    room_goto(rm_end);
 }
 </string>
           </argument>
@@ -334,7 +336,7 @@ while (y &gt; window_get_height()) y--;
             <string>var new_bullet;
 if (canPew) {
     new_bullet = scr_bullet_create(global.theta, 0, y-sprite_height-17, -10, 5, obj_bullet_player, 3, 1);
-    canPew = false;
+    //canPew = false;  //why is this even here?
     alarm[1] = attackSpeed;
 }
 
