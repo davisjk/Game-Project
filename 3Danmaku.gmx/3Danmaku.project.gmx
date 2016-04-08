@@ -54,6 +54,7 @@
     <object>objects\obj_health_heart</object>
     <object>objects\obj_planet</object>
     <object>objects\obj_button</object>
+    <object>objects\obj_message</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_start</room>

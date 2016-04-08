@@ -53,6 +53,7 @@
   <instances>
     <instance objName="obj_button" x="800" y="992" name="inst_66D2BB49" locked="0" code="button_text = &quot;START&quot;&#xA;" scaleX="0.426666676998138" scaleY="0.639999985694885" colour="4294967295" rotation="0"/>
     <instance objName="obj_button" x="992" y="992" name="inst_632D93FF" locked="0" code="button_text = &quot;QUIT&quot;&#xA;" scaleX="0.426666676998138" scaleY="0.639999985694885" colour="4294967295" rotation="0"/>
+    <instance objName="obj_message" x="32" y="32" name="inst_0C506D4E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
