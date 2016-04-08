@@ -44,6 +44,7 @@ barOutline.image_yscale = 0.6;
 
 bulletPattern = 0;
 safespot = 0;
+startedphase = false;
 
 </string>
           </argument>
@@ -93,42 +94,6 @@ safespot = 0;
           <argument>
             <kind>1</kind>
             <string>/// Phase 2
-
-arc_center = random_range(0, 2*pi);
-dtheta = 0;
-y0 = y+sprite_height/2-20;
-dy = 10;
-size = 0.7;
-obj = obj_bullet_enemy;
-img = 10;
-dmg = 1;
-
-scr_bullet_create(arc_center, dtheta, y0, dy, size, obj, img, dmg);
-
-alarm[2] = 10;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="1">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Phase 1
 
 var i;
 
@@ -241,18 +206,72 @@ else if(bulletPattern &gt;= 12)
 
 bulletPattern += 1;
 
+if(bossHp &lt; 34)
+{
+    alarm[3] = 10;
+}
+else
+{
+    alarm[2] = 10;
+}
+
+
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Phase 1
+
+/* Initialize data for a new arc */
+if (startedphase == false || i == 10) {
+  startedphase = true;
+  i = 0;
+  arc_center = random_range(0, 2*pi);
+  dtheta = 0;
+  y0 = y+sprite_height/2-20;
+  dy = 7;
+  size = 0.6;
+  obj = obj_bullet_enemy;
+  img = random_range(5, 6);
+  dmg = 1;
+}
+
+
+/* Create arcs */
+scr_bullet_create(arc_center+i/10, dtheta, y0, dy, size, obj, img, dmg);
+scr_bullet_create(arc_center-i/10, dtheta, y0, dy, size, obj, img, dmg);
+i+=1; // setup for next arc
+
+
+/* Reset alarms */
 if(bossHp &lt; 67)
 {
     alarm[2] = 10;
 }
 else
 {
-    alarm[1] = 10;
+    alarm[1] = 2;
 }
-
-
-
-
 </string>
           </argument>
         </arguments>
