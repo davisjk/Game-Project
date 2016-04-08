@@ -12,7 +12,7 @@ with (new_bullet) {
     image_xscale = argument4;
     image_yscale = image_yscale*argument4;
     damage = argument7;
-    size_scale = argument4;
+    scale = argument4;
 }
 
 return new_bullet;
