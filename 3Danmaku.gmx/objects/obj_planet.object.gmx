@@ -28,13 +28,13 @@
             <string>
 if(global.victory)
 {
-    draw_text(room_width/2, room_height/2, "VICTORY IS YOURS!");
+    draw_text(room_width/3, room_height/3, "VICTORY IS YOURS!");
 }
 else
 {
-    draw_text(room_width/2, room_height/2, "YOU HAVE BEEN DEFEATED");
+    draw_text(room_width/3, room_height/3, "YOU HAVE BEEN DEFEATED");
 }
-draw_text(room_width/2, room_height/2 + 32, "Score:  " + string(global.score));
+draw_text(room_width/3, room_height/3 + 32, "Score:  " + string(global.score));
 </string>
           </argument>
         </arguments>
