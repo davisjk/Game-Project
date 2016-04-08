@@ -18,6 +18,7 @@
     <sprite>sprites\spr_gray_wall</sprite>
     <sprite>sprites\spr_outline</sprite>
     <sprite>sprites\spr_rect</sprite>
+    <sprite>sprites\spr_button</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bkg_stars1</background>
@@ -52,8 +53,10 @@
     <object>objects\obj_boss1</object>
     <object>objects\obj_health_heart</object>
     <object>objects\obj_planet</object>
+    <object>objects\obj_button</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rm_start</room>
     <room>rooms\rm_level1</room>
     <room>rooms\rm_end</room>
   </rooms>

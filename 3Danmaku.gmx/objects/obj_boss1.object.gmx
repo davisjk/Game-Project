@@ -346,10 +346,14 @@ else
             <kind>1</kind>
             <string>draw_set_colour(c_white);
 draw_set_font(fnt_big_num);
+draw_set_valign(fa_center);
+
 draw_set_halign(fa_right);
-draw_text(1770, 66, string(bossHp));
+draw_text(barOutline.x+barOutline.sprite_width-8, barOutline.y+barOutline.sprite_height/2, string(bossHp));
+
 draw_set_halign(fa_left);
-draw_text(1400, 66, " BOSS");
+draw_text(barOutline.x+5, barOutline.y+barOutline.sprite_height/2, "BOSS");
+
 draw_set_font(-1);
 </string>
           </argument>
