@@ -94,7 +94,18 @@ safespot = 0;
             <kind>1</kind>
             <string>/// Phase 2
 
+arc_center = random_range(0, 2*pi);
+dtheta = 0;
+y0 = y+sprite_height/2-20;
+dy = 10;
+size = 0.01;
+obj = obj_bullet_enemy;
+img = 10;
+dmg = 1;
 
+scr_bullet_create(arc_center, dtheta, y0, dy, size, obj, img, dmg);
+
+alarm[2] = 10;
 </string>
           </argument>
         </arguments>
@@ -230,7 +241,7 @@ else if(bulletPattern &gt;= 12)
 
 bulletPattern += 1;
 
-if(bossHp &lt; 67)
+if(bossHp &lt; 101)
 {
     alarm[2] = 10;
 }
