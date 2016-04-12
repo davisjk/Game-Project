@@ -33,8 +33,8 @@ movingRight = false;
 canBeHit = true;
 canPew = true;
 depth = 10;
-x = window_get_width()/2;
-y = window_get_height()/2;
+x = room_width/2;
+y = room_height/2;
 attackSpeed = 10;
 playerHp = 3;
 

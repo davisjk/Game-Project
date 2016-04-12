@@ -270,7 +270,7 @@ if(bossHp &lt; 67)
 }
 else
 {
-    alarm[1] = 2;
+    alarm[1] = 1;
 }
 </string>
           </argument>
