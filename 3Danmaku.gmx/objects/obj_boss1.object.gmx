@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x = window_get_width()/2;
+            <string>x = 1920/2;
 y = 0;
 bossHp = 100;
 depth = 11;
