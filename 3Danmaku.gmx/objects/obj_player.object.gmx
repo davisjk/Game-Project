@@ -264,7 +264,7 @@ while (y &lt; 0) y++;
           <argument>
             <kind>1</kind>
             <string>y += 10;
-while (y &gt; window_get_height()) y--;
+while (y &gt; room_height) y--;
 </string>
           </argument>
         </arguments>

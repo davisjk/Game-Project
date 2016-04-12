@@ -51,7 +51,7 @@
             <string>x = (room_width/2) - (sin(global.theta-theta)*(room_width*global.screenWidthRatio/2));
 
 realy += dy;
-if (realy &gt; window_get_height()) instance_destroy();
+if (realy &gt; room_height) instance_destroy();
 if (realy &lt; 0) instance_destroy();
 y = realy + (16+16*cos(global.theta-theta));
 
