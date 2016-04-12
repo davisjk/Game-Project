@@ -321,6 +321,26 @@ alarm[1] = 5;
           <argument>
             <kind>1</kind>
             <string>barFill.image_xscale = bossHp / 100;
+
+/* Boss animation */
+
+animation_speed = 1;
+
+if (keyboard_check(ord("A"))) {
+    if (image_angle &lt; 5) image_angle += animation_speed;
+    else image_angle = 5;
+}
+
+else if (keyboard_check(ord("D"))) {
+    if (image_angle &gt; -5) image_angle -= animation_speed;
+    else image_angle = -5;
+}
+
+else {
+    if (image_angle &lt; 0) image_angle += animation_speed;
+    else if (image_angle &gt; 0) image_angle -= animation_speed;
+    else image_angle = 0;
+}
 </string>
           </argument>
         </arguments>
