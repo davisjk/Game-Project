@@ -48,7 +48,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x = (window_get_width()/2) - (sin(global.theta-theta)*(window_get_width()*global.screenWidthRatio/2));
+            <string>x = (room_width/2) - (sin(global.theta-theta)*(room_width*global.screenWidthRatio/2));
 
 realy += dy;
 if (realy &gt; window_get_height()) instance_destroy();
