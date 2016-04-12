@@ -29,8 +29,8 @@
 y = 0;
 bossHp = 100;
 depth = 11;
-image_xscale = 2;
-image_yscale = 2;
+//image_xscale = 3;
+//image_yscale = 3;
 
 alarm[0] = 5;
 
@@ -208,7 +208,7 @@ bulletPattern += 1;
 
 if(bossHp &lt; 34)
 {
-    alarm[3] = 10;
+    alarm[3] = 30;
 }
 else
 {
