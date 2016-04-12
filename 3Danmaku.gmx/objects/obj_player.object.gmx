@@ -367,13 +367,13 @@ if (canPew) {
 precision = "";
 if (global.time % 60 &lt; 10) precision = "0";
 
-draw_text(32, 32, "Time:  " + string(floor(global.time / 60)) + ":" + precision + string(global.time % 60));
+draw_text(global.display_scale_x * 32, global.display_scale_y * 32, "Time:  " + string(floor(global.time / 60)) + ":" + precision + string(global.time % 60));
 
-draw_text(32, 64, "Score:  " + string(global.score));
+draw_text(global.display_scale_x * 32, global.display_scale_y * 64, "Score:  " + string(global.score));
 
-draw_text(room_width - 320, 320, "PLAYER HEALTH");
+draw_text(global.display_scale_x * (room_width - 320), global.display_scale_y * 320, "PLAYER HEALTH");
 
-draw_text(room_width - 320, 480, "AMMO");
+draw_text(global.display_scale_x * (room_width - 320), global.display_scale_y * 480, "AMMO");
 
 </string>
           </argument>

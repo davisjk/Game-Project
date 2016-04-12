@@ -379,10 +379,14 @@ draw_set_font(fnt_big_num);
 draw_set_valign(fa_center);
 
 draw_set_halign(fa_right);
-draw_text(barOutline.x+barOutline.sprite_width-8, barOutline.y+barOutline.sprite_height/2, string(bossHp));
+drawx = global.display_scale_x * (barOutline.x+barOutline.sprite_width-8);
+drawy = global.display_scale_y * (barOutline.y+barOutline.sprite_height/2);
+draw_text(drawx, drawy, string(bossHp));
 
 draw_set_halign(fa_left);
-draw_text(barOutline.x+5, barOutline.y+barOutline.sprite_height/2, "BOSS");
+drawx = global.display_scale_x * (barOutline.x+5);
+drawy = global.display_scale_y * (barOutline.y+barOutline.sprite_height/2);
+draw_text(drawx, drawy, "BOSS");
 
 draw_set_font(-1);
 </string>
