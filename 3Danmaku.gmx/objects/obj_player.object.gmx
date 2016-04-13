@@ -31,11 +31,14 @@ image_yscale = 0.4;
 movingLeft = false;
 movingRight = false;
 canBeHit = true;
+iframes = 30;
 canPew = true;
 depth = 10;
 x = window_get_width()/2;
 y = window_get_height()/2;
 attackSpeed = 10;
+playerDamage = 1/3;
+damageMult = 1;
 playerHp = 3;
 
 alarm[1] = attackSpeed;
@@ -97,7 +100,7 @@ alarm[9] = room_speed;
             <kind>1</kind>
             <string>var new_bullet;
 if (canPew) {
-    new_bullet = scr_bullet_create(global.theta, 0, y-sprite_height-17, -10, 1, obj_bullet_player, 3, 1);
+    new_bullet = scr_bullet_create(global.theta, 0, y-sprite_height-17, -10, 1, obj_bullet_player, 3, playerDamage*damageMult);
     alarm[1] = attackSpeed;
 }
 
@@ -159,9 +162,10 @@ if (canPew) {
 if (global.theta &gt; 2*pi) global.theta -= 2*pi;
 if (global.theta &lt; 0) global.theta += 2*pi;
 
-if(playerHp == 0) {
+if(playerHp &lt;= 0) {
     playerHp = 3;
     global.victory = false;
+    global.score -= round(obj_boss1.bossHp*100 + global.time*10);
     room_goto(rm_end);
 }
 </string>
@@ -209,12 +213,19 @@ if(playerHp == 0) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if ((abs(global.theta - other.theta) &lt; pi/2 || abs(global.theta - other.theta) &gt; 3*pi/2) &amp;&amp; canBeHit) {
-    global.hits += 1;
-    playerHp -= 1;
-    with (heart[playerHp]) instance_destroy();
+            <string>var i;
+
+if ((abs(global.theta - other.theta) &lt; pi/2 || abs(global.theta - other.theta) &gt; 3*pi/2) &amp;&amp; canBeHit) {
+    for (i = 0; i &lt; other.damage; i++) {
+        global.hits += 1;
+        playerHp -= 1;
+        if (playerHp &lt;= 0) continue;
+        with (heart[playerHp]) instance_destroy();
+    }
+    
     canBeHit = false;
-    alarm[0] = 30;
+    damageMult = 1;
+    alarm[0] = iframes;
     with (other) instance_destroy();
 }
 </string>
@@ -362,18 +373,23 @@ if (canPew) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_colour(c_white);
+            <string>var precision;
+
+draw_set_colour(c_white);
 
 precision = "";
 if (global.time % 60 &lt; 10) precision = "0";
 
-draw_text(32, 32, "Time:  " + string(floor(global.time / 60)) + ":" + precision + string(global.time % 60));
+draw_text_transformed(32, 50, "Time:  " + string(floor(global.time / 60)) + ":" + precision + string(global.time % 60), 3, 3, 0);
 
-draw_text(32, 64, "Score:  " + string(global.score));
+global.score = round(global.score);
+draw_text_transformed(32, 100, "Score:  " + string(global.score), 3, 3, 0);
 
-draw_text(room_width - 320, 320, "PLAYER HEALTH");
+draw_text_transformed(32, 150, "Multiplier:  " + string(damageMult), 3, 3, 0);
 
-draw_text(room_width - 320, 480, "AMMO");
+draw_text_transformed(7*room_width/10 + 32, 320, "PLAYER HEALTH", 3, 3, 0);
+
+draw_text_transformed(7*room_width/10 + 32, 480, "AMMO", 3, 3, 0);
 
 </string>
           </argument>

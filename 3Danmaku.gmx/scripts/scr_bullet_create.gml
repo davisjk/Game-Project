@@ -1,4 +1,4 @@
-///script_bullet_create(bullet_theta, bullet_dtheta, bullet_y, bullet_dy, bullet_size, bullet_obj, bullet_image_index, bullet_damage)
+///scr_bullet_create(theta, dtheta, y, dy, size, obj, image_index, damage)
 
 var new_bullet;
 

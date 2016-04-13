@@ -66,6 +66,25 @@ depth = -(cos(global.theta-theta))*100;
 
 image_xscale = scale * (cos(global.theta-theta)+3)/2;
 image_yscale = image_xscale;
+
+// change the direction the bullet is facing when it 
+// moves to the opposite side of the cylinder
+if ((image_index == 12 &amp;&amp; depth &lt; 0 &amp;&amp; dtheta &gt; 0) || 
+    (image_index == 12 &amp;&amp; depth &gt; 0 &amp;&amp; dtheta &lt; 0)) {
+    image_index = 16;
+}
+if ((image_index == 13 &amp;&amp; depth &lt; 0 &amp;&amp; dtheta &gt; 0) || 
+    (image_index == 13 &amp;&amp; depth &gt; 0 &amp;&amp; dtheta &lt; 0)) {
+    image_index = 15;
+}
+if ((image_index == 16 &amp;&amp; depth &lt; 0 &amp;&amp; dtheta &lt; 0) || 
+    (image_index == 16 &amp;&amp; depth &gt; 0 &amp;&amp; dtheta &gt; 0)) {
+    image_index = 12;
+}
+if ((image_index == 15 &amp;&amp; depth &lt; 0 &amp;&amp; dtheta &lt; 0) || 
+    (image_index == 15 &amp;&amp; depth &gt; 0 &amp;&amp; dtheta &gt; 0)) {
+    image_index = 13;
+}
 </string>
           </argument>
         </arguments>
