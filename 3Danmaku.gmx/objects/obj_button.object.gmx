@@ -65,6 +65,9 @@ draw_set_valign(fa_center);
 drawx = x + sprite_width/2;
 drawy = y + sprite_height/2;
 
+drawx = drawx * global.display_scale_x;
+drawy = drawy * global.display_scale_y;
+
 draw_text(drawx, drawy, button_text);
 </string>
           </argument>

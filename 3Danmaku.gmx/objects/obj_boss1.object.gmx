@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x = window_get_width()/2;
+            <string>x = 1920/2;
 y = 0;
 bossHp = 100;
 alarm_separation = 10;
@@ -302,7 +302,7 @@ if(bossHp &lt; 67 &amp;&amp; arc_i == 10)
 }
 else
 {
-    alarm[1] = 2;
+    alarm[1] = 1;
 }
 </string>
           </argument>
@@ -332,6 +332,25 @@ if (bossHp &lt;= 0){
     global.victory = true;
     global.score -= round(global.time*10);
     room_goto(rm_end);
+	
+/* Boss animation */
+
+animation_speed = 1;
+
+if (keyboard_check(ord("A"))) {
+    if (image_angle &lt; 5) image_angle += animation_speed;
+    else image_angle = 5;
+}
+
+else if (keyboard_check(ord("D"))) {
+    if (image_angle &gt; -5) image_angle -= animation_speed;
+    else image_angle = -5;
+}
+
+else {
+    if (image_angle &lt; 0) image_angle += animation_speed;
+    else if (image_angle &gt; 0) image_angle -= animation_speed;
+    else image_angle = 0;
 }
 </string>
           </argument>
@@ -386,10 +405,14 @@ draw_set_font(fnt_big_num);
 draw_set_valign(fa_center);
 
 draw_set_halign(fa_right);
-draw_text(barOutline.x+barOutline.sprite_width-8, barOutline.y+barOutline.sprite_height/2, string(bossHp));
+drawx = global.display_scale_x * (barOutline.x+barOutline.sprite_width-8);
+drawy = global.display_scale_y * (barOutline.y+barOutline.sprite_height/2);
+draw_text(drawx, drawy, string(bossHp));
 
 draw_set_halign(fa_left);
-draw_text(barOutline.x+5, barOutline.y+barOutline.sprite_height/2, "BOSS");
+drawx = global.display_scale_x * (barOutline.x+5);
+drawy = global.display_scale_y * (barOutline.y+barOutline.sprite_height/2);
+draw_text(drawx, drawy, "BOSS");
 
 draw_set_font(-1);
 </string>

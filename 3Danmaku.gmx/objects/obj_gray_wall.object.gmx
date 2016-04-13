@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_xscale = window_get_width()*(1-global.screenWidthRatio)/2;
-image_yscale = window_get_height();
+            <string>image_xscale = 1920*(1-global.screenWidthRatio)/2;//display_get_width()*(1-global.screenWidthRatio)/2;
+image_yscale = 1080;//display_get_height();
 depth = 1000;
 </string>
           </argument>
