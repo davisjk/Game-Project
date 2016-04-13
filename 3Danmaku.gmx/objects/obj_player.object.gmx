@@ -25,11 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_xscale = 0.4;
-image_yscale = 0.4;
+            <string>image_xscale = .75;
+image_yscale = .75;
 
-movingLeft = false;
-movingRight = false;
 canBeHit = true;
 iframes = 30;
 canPew = true;
@@ -149,14 +147,36 @@ if (canPew) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (movingLeft) {
-    global.theta -= 0.05;
-    background_hspeed[0] = 10;
-} else if (movingRight) {
-    global.theta += 0.05;
-    background_hspeed[0] = -10;
+            <string>var animation_speed = .2, move_speed = 10;
+
+if (keyboard_check_direct(vk_shift)) move_speed /= 2;
+
+if (keyboard_check_direct(ord("A"))) {
+    if (image_angle &lt; 5) image_angle += animation_speed;
+    else image_angle = 5;
+    
+    global.theta -= move_speed/200;
+    background_hspeed[0] = move_speed/2;
+} else if (keyboard_check_direct(ord("D"))) {
+    if (image_angle &gt; -5) image_angle -= animation_speed;
+    else image_angle = -5;
+    
+    global.theta += move_speed/200;
+    background_hspeed[0] = -move_speed/2;
 } else {
+    if (image_angle &lt; -animation_speed*2) image_angle += animation_speed*2;
+    else if (image_angle &gt; animation_speed*2) image_angle -= animation_speed*2;
+    else image_angle = 0;
+    
     background_hspeed[0] = 0;
+}
+if (keyboard_check_direct(ord("W"))) {
+    y -= move_speed;
+    while (y &lt; 0) y++;
+} else 
+if (keyboard_check_direct(ord("S"))) {
+    y += move_speed;
+    while (y &gt; room_height) y--;
 }
 
 if (global.theta &gt; 2*pi) global.theta -= 2*pi;
@@ -215,113 +235,24 @@ if(playerHp &lt;= 0) {
             <kind>1</kind>
             <string>var i;
 
-if ((abs(global.theta - other.theta) &lt; pi/2 || abs(global.theta - other.theta) &gt; 3*pi/2) &amp;&amp; canBeHit) {
-    for (i = 0; i &lt; other.damage; i++) {
-        global.hits += 1;
-        playerHp -= 1;
-        if (playerHp &lt;= 0) continue;
-        with (heart[playerHp]) instance_destroy();
+if ((abs(global.theta - other.theta) &lt; pi/2 || abs(global.theta - other.theta) &gt; 3*pi/2)) {
+    if (canBeHit &amp;&amp; position_meeting(x, y, other)) {
+        for (i = 0; i &lt; other.damage; i++) {
+            global.hits += 1;
+            playerHp -= 1;
+            if (playerHp &lt;= 0) continue;
+            with (heart[playerHp]) instance_destroy();
+        }
+        
+        canBeHit = false;
+        damageMult = 1;
+        alarm[0] = iframes;
+        with (other) instance_destroy();
+    } else if (other.scraped == false) {
+        other.scraped = true;
+        damageMult += .01;
     }
-    
-    canBeHit = false;
-    damageMult = 1;
-    alarm[0] = iframes;
-    with (other) instance_destroy();
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="87">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>y -= 10;
-while (y &lt; 0) y++;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="83">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>y += 10;
-while (y &gt; room_height) y--;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="68">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>movingRight = true;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="65">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>movingLeft = true;
 </string>
           </argument>
         </arguments>
@@ -346,9 +277,7 @@ while (y &gt; room_height) y--;
             <kind>1</kind>
             <string>var new_bullet;
 if (canPew) {
-    new_bullet = scr_bullet_create(global.theta, 0, y-sprite_height-17, -10, 5, obj_bullet_player, 3, 1);
-    //canPew = false;  //why is this even here?
-    alarm[1] = attackSpeed;
+    new_bullet = scr_bullet_create(global.theta, 0, y-sprite_height-17, -10, 5, obj_bullet_player, 3, playerDamage*damageMult);
 }
 
 </string>
@@ -383,6 +312,7 @@ draw_set_halign(fa_left);
 precision = "";
 if (global.time % 60 &lt; 10) precision = "0";
 global.score = round(global.score);
+if (global.fps_count++ % 60 == 0) fps_now = fps_real;
 
 draw_text(global.display_scale_x * 64, global.display_scale_y * 64, "Time:  " + string(floor(global.time / 60)) + ":" + precision + string(global.time % 60));
 draw_text(global.display_scale_x * 64, global.display_scale_y * 128, "Score:  " + string(global.score));
@@ -392,6 +322,10 @@ draw_text(global.display_scale_x * (room_width*(1+global.screenWidthRatio)/2 + 6
 draw_text(global.display_scale_x * (room_width*(1+global.screenWidthRatio)/2 + 64), global.display_scale_y * 480, "AMMO");
 
 draw_set_font(-1);
+draw_set_color(c_green);
+draw_set_halign(fa_right);
+
+draw_text(room_width - global.display_scale_x * 32, global.display_scale_y * 32, fps_now);
 </string>
           </argument>
         </arguments>

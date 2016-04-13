@@ -327,7 +327,9 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>barFill.image_xscale = bossHp / 100;
+            <string>var animation_speed = .2;
+
+barFill.image_xscale = bossHp / 100;
 
 if (bossHp &lt;= 0) {
     global.victory = true;
@@ -337,21 +339,19 @@ if (bossHp &lt;= 0) {
 
 /* Boss animation */
 
-animation_speed = 1;
-
 if (keyboard_check(ord("D"))) {
-    if (image_angle &lt; 5) image_angle += animation_speed;
-    else image_angle = 5;
+    if (image_angle &lt; 3) image_angle += animation_speed;
+    else image_angle = 3;
 }
 
 else if (keyboard_check(ord("A"))) {
-    if (image_angle &gt; -5) image_angle -= animation_speed;
-    else image_angle = -5;
+    if (image_angle &gt; -3) image_angle -= animation_speed;
+    else image_angle = -3;
 }
 
 else {
-    if (image_angle &lt; 0) image_angle += animation_speed;
-    else if (image_angle &gt; 0) image_angle -= animation_speed;
+    if (image_angle &lt; -animation_speed*2) image_angle += animation_speed*2;
+    else if (image_angle &gt; animation_speed*2) image_angle -= animation_speed*2;
     else image_angle = 0;
 }
 </string>
@@ -378,7 +378,7 @@ else {
             <kind>1</kind>
             <string>with (other) instance_destroy();
 global.score += (obj_player.damageMult-1)*1000;
-obj_player.damageMult += .01;
+//obj_player.damageMult += .01;
 bossHp -= other.damage;
 </string>
           </argument>
