@@ -25,19 +25,22 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>draw_set_colour(c_white);
+draw_set_font(fnt_big_num);
 draw_set_halign(fa_center);
 draw_set_valign(fa_center);
 
 if(global.victory)
 {
-    draw_text(global.display_scale_x * room_width/2, global.display_scale_y * 2*room_height/3, "VICTORY IS YOURS!");
+    draw_text(global.display_scale_x * room_width/2, global.display_scale_y * (2*room_height/3 - 32), "VICTORY IS YOURS!");
 }
 else
 {
-    draw_text(global.display_scale_x * room_width/2, global.display_scale_y * 2*room_height/3, "YOU HAVE BEEN DEFEATED");
+    draw_text(global.display_scale_x * room_width/2, global.display_scale_y * (2*room_height/3 - 32), "YOU HAVE BEEN DEFEATED");
 }
-draw_text(global.display_scale_x * room_width/2, global.display_scale_y * 2*room_height/3 + 32, "Score:  " + string(global.score));
+draw_text(global.display_scale_x * room_width/2, global.display_scale_y * (2*room_height/3 + 32), "Score:  " + string(global.score));
+
+draw_set_font(-1);
 </string>
           </argument>
         </arguments>

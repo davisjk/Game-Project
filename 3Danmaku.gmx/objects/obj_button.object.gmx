@@ -62,11 +62,8 @@ if (button_text == "RESTART") {
 draw_set_halign(fa_center);
 draw_set_valign(fa_center);
 
-drawx = x + sprite_width/2;
-drawy = y + sprite_height/2;
-
-drawx = drawx * global.display_scale_x;
-drawy = drawy * global.display_scale_y;
+drawx = (x + sprite_width/2) * global.display_scale_x;
+drawy = (y + sprite_height/2) * global.display_scale_y;
 
 draw_text(drawx, drawy, button_text);
 </string>

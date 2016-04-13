@@ -46,8 +46,8 @@ alarm[1] = attackSpeed;
 //Player health and health objects.
 for(i = 0; i &lt; playerHp; i++)
 {
-    heart[i] = instance_create(room_width - 50, 400, obj_health_heart);
-    heart[i].x -= heart[i].sprite_width*(playerHp-i)*3/2;
+    heart[i] = instance_create(room_width*(1+global.screenWidthRatio)/2 + 128, 400, obj_health_heart);
+    heart[i].x += heart[i].sprite_width*(playerHp-i)*3/2;
 }
 
 alarm[9] = room_speed;
@@ -376,21 +376,22 @@ if (canPew) {
             <string>var precision;
 
 draw_set_colour(c_white);
+draw_set_font(fnt_big_num);
+draw_set_valign(fa_center);
+draw_set_halign(fa_left);
 
 precision = "";
 if (global.time % 60 &lt; 10) precision = "0";
-
-draw_text_transformed(global.display_scale_x * 32, global.display_scale_y * 50, "Time:  " + string(floor(global.time / 60)) + ":" + precision + string(global.time % 60), 3, 3, 0);
-
 global.score = round(global.score);
-draw_text_transformed(global.display_scale_x * 32, global.display_scale_y * 100, "Score:  " + string(global.score), 3, 3, 0);
 
-draw_text_transformed(global.display_scale_x * 32, global.display_scale_y * 150, "Multiplier:  " + string(damageMult), 3, 3, 0);
+draw_text(global.display_scale_x * 64, global.display_scale_y * 64, "Time:  " + string(floor(global.time / 60)) + ":" + precision + string(global.time % 60));
+draw_text(global.display_scale_x * 64, global.display_scale_y * 128, "Score:  " + string(global.score));
+draw_text(global.display_scale_x * 64, global.display_scale_y * 192, "Multiplier:  " + string(damageMult));
 
-draw_text_transformed(global.display_scale_x * (room_width - 320), global.display_scale_y * 320, "PLAYER HEALTH", 3, 3, 0);
+draw_text(global.display_scale_x * (room_width*(1+global.screenWidthRatio)/2 + 64), global.display_scale_y * 320, "PLAYER HEALTH");
+draw_text(global.display_scale_x * (room_width*(1+global.screenWidthRatio)/2 + 64), global.display_scale_y * 480, "AMMO");
 
-draw_text_transformed(global.display_scale_x * (room_width - 320), global.display_scale_y * 480, "AMMO", 3, 3, 0);
-
+draw_set_font(-1);
 </string>
           </argument>
         </arguments>

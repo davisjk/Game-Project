@@ -29,6 +29,7 @@
 draw_set_valign(fa_center);
 draw_set_halign(fa_center);
 draw_set_font(fnt_big_num);
+
 draw_text(global.display_scale_x * room_width/2, global.display_scale_y * room_height/2, "3Danmaku");
 
 draw_set_font(-1);
