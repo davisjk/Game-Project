@@ -19,6 +19,12 @@
     <sprite>sprites\spr_outline</sprite>
     <sprite>sprites\spr_rect</sprite>
     <sprite>sprites\spr_button</sprite>
+    <sprite>sprites\spr_green_boss_1</sprite>
+    <sprite>sprites\spr_green_boss_2</sprite>
+    <sprite>sprites\spr_green_boss_3</sprite>
+    <sprite>sprites\spr_blue_boss_1</sprite>
+    <sprite>sprites\spr_blue_boss_2</sprite>
+    <sprite>sprites\spr_blue_boss_3</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bkg_stars1</background>
