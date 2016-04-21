@@ -7,6 +7,7 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_player1</sprite>
+    <sprite>sprites\spr_broken_player</sprite>
     <sprite>sprites\spr_player2</sprite>
     <sprite>sprites\spr_player3</sprite>
     <sprite>sprites\spr_boss1</sprite>
@@ -66,6 +67,7 @@
     <object>objects\obj_highscore_table</object>
     <object>objects\obj_stationary_player</object>
     <object>objects\obj_simple_bullet</object>
+    <object>objects\obj_broken_player</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_start</room>

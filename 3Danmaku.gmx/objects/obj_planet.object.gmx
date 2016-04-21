@@ -26,7 +26,13 @@
           <argument>
             <kind>1</kind>
             <string>// Create player to shoot at earth
-instance_create(x, y+250, obj_stationary_player);
+if (global.victory) {
+    instance_create(x, y+250, obj_stationary_player);
+} else {
+    image_alpha = 0;
+    y += 125;
+    instance_create(x, y, obj_broken_player);
+}
 did_animation = false;
 canFire = true;
 firing = true;
@@ -86,7 +92,7 @@ earth = instance_nearest(0, 0, obj_planet);
 player = instance_nearest(0, 0, obj_stationary_player);
 
 // Let player destroy earth
-if (!global.victory) {
+if (global.victory) {
   earth.image_alpha -= 0.01;
   
   if (earth.image_alpha &gt;= 0.1 &amp;&amp; firing &amp;&amp; canFire) {
