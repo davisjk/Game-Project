@@ -25,13 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>margin_scaling = 3;
-left = global.display_scale_x * room_width / margin_scaling;
-top = global.display_scale_y * room_height / margin_scaling;
-right = global.display_scale_x * room_width * (margin_scaling - 1) / margin_scaling;
-bottom = global.display_scale_y * room_height * (margin_scaling - 1) / margin_scaling;
+            <string>
+draw_set_halign(fa_center);
+draw_text( global.hs_title_x, global.hs_title_y, "HIGHSCORES" );
 
-draw_highscore( left, top, right, bottom );
+draw_set_halign(fa_left);
+padding = 20;
+draw_highscore( global.hs_left+padding, global.hs_top+padding, global.hs_right-padding, global.hs_bottom-padding );
 </string>
           </argument>
         </arguments>
