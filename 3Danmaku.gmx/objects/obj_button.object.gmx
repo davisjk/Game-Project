@@ -26,13 +26,20 @@
           <argument>
             <kind>1</kind>
             <string>
+if (button_text != "BACK") {
+    global.last_room = room;
+}
+
 if (button_text == "START") {
   room_goto(rm_level1);
 }
 
 if (button_text == "HIGH#SCORES") {
-  global.last_room = rm_start;
   room_goto(rm_highscores);
+}
+
+if (button_text == "OPTIONS") {
+  room_goto(rm_options);
 }
 
 if (button_text == "BACK") {
