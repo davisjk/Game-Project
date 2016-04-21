@@ -25,8 +25,18 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (button_text == "START") {
-  room_goto_next();
+            <string>
+if (button_text == "START") {
+  room_goto(rm_level1);
+}
+
+if (button_text == "HIGHSCORES") {
+  global.last_room = rm_start;
+  room_goto(rm_highscores);
+}
+
+if (button_text == "BACK") {
+  room_goto(global.last_room);
 }
 
 if (button_text == "QUIT") {
