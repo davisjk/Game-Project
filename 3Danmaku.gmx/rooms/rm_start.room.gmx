@@ -60,7 +60,7 @@ global.display_scale_y = display_get_height() / 1080;</code>
     <instance objName="obj_button" x="704" y="960" name="inst_66D2BB49" locked="0" code="button_text = &quot;START&quot;&#xA;" scaleX="0.426666676998138" scaleY="0.639999985694885" colour="4294967295" rotation="0"/>
     <instance objName="obj_button" x="1088" y="960" name="inst_632D93FF" locked="0" code="button_text = &quot;QUIT&quot;&#xA;" scaleX="0.426666676998138" scaleY="0.639999985694885" colour="4294967295" rotation="0"/>
     <instance objName="obj_message" x="32" y="32" name="inst_0C506D4E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button" x="896" y="960" name="inst_D9D220AC" locked="0" code="button_text = &quot;HIGHSCORES&quot;&#xA;" scaleX="0.426666676998138" scaleY="0.639999985694885" colour="4294967295" rotation="0"/>
+    <instance objName="obj_button" x="896" y="960" name="inst_D9D220AC" locked="0" code="button_text = &quot;HIGH#SCORES&quot;&#xA;" scaleX="0.426666676998138" scaleY="0.639999985694885" colour="4294967295" rotation="0"/>
     <instance objName="obj_text_bg" x="704" y="544" name="inst_9678AEDC" locked="0" code="" scaleX="512" scaleY="64" colour="4294967295" rotation="0"/>
     <instance objName="obj_text_box" x="640" y="544" name="inst_AA60354E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
