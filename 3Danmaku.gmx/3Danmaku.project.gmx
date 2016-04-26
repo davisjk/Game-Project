@@ -58,6 +58,8 @@
     <object>objects\obj_bullet_player</object>
     <object>objects\obj_gray_wall</object>
     <object>objects\obj_boss1</object>
+    <object>objects\obj_boss2</object>
+    <object>objects\obj_boss3</object>
     <object>objects\obj_health_heart</object>
     <object>objects\obj_planet</object>
     <object>objects\obj_button</object>
@@ -75,6 +77,8 @@
     <room>rooms\rm_options</room>
     <room>rooms\rm_highscores</room>
     <room>rooms\rm_level1</room>
+    <room>rooms\rm_level2</room>
+    <room>rooms\rm_level3</room>
     <room>rooms\rm_end</room>
   </rooms>
   <help>

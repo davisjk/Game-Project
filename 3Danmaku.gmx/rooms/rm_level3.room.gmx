@@ -12,16 +12,16 @@
   <showcolour>-1</showcolour>
   <code>background_htiled[0] = true;
 
-global.currentBoss = obj_boss1;
+global.currentBoss = obj_boss3;
 global.theta = 0;
-global.hits = 0;
+//global.hits = 0;
 global.screenWidthRatio = 2/5;
 global.time = 0;
-global.score = 0;
-global.fps_avg = 0;
-global.fps_count = 0;
+//global.score = 0;
+//global.fps_avg = 0;
+//global.fps_count = 0;
 
-instance_create(0, 0, obj_boss1);
+instance_create(0, 0, obj_boss3);
 instance_create(0, 0, obj_player);
 instance_create(0, 0, obj_gray_wall);
 instance_create(room_width*(1+global.screenWidthRatio)/2, 0, obj_gray_wall);</code>

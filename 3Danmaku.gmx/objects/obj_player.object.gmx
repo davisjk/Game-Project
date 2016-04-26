@@ -185,9 +185,55 @@ if (global.theta &lt; 0) global.theta += 2*pi;
 if(playerHp &lt;= 0) {
     playerHp = 3;
     global.victory = false;
-    global.score -= round(obj_boss1.bossHp*100 + global.time*10);
+    global.score -= round(global.currentBoss.bossHp*100 + global.time*10);
     room_goto(rm_end);
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_boss3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>playerHp = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_boss2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>playerHp = 0;
 </string>
           </argument>
         </arguments>
@@ -312,7 +358,7 @@ draw_set_halign(fa_left);
 precision = "";
 if (global.time % 60 &lt; 10) precision = "0";
 global.score = round(global.score);
-if (global.fps_count++ % 60 == 0) fps_now = fps_real;
+if (global.fps_count++ % 60 == 0) global.fps_now = fps_real;
 
 draw_text(global.display_scale_x * 64, global.display_scale_y * 64, "Time:  " + string(floor(global.time / 60)) + ":" + precision + string(global.time % 60));
 draw_text(global.display_scale_x * 64, global.display_scale_y * 128, "Score:  " + string(global.score));
@@ -325,7 +371,7 @@ draw_set_font(-1);
 draw_set_color(c_green);
 draw_set_halign(fa_right);
 
-draw_text(room_width - global.display_scale_x * 32, global.display_scale_y * 32, fps_now);
+draw_text(room_width - global.display_scale_x * 32, global.display_scale_y * 32, global.fps_now);
 </string>
           </argument>
         </arguments>
