@@ -10,13 +10,7 @@
   <persistent>0</persistent>
   <colour>0</colour>
   <showcolour>-1</showcolour>
-  <code>window_set_fullscreen(true);
-
-global.player_name = "ENTER YOUR NAME";
-
-/* Used to scale positioning for smaller screens */
-global.display_scale_x = display_get_width() / 1920;
-global.display_scale_y = display_get_height() / 1080;</code>
+  <code>window_set_fullscreen(true);</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
