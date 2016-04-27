@@ -325,7 +325,9 @@ draw_set_font(-1);
 draw_set_color(c_green);
 draw_set_halign(fa_right);
 
-draw_text(room_width - global.display_scale_x * 32, global.display_scale_y * 32, fps_now);
+if (global.fps_enabled) {
+  draw_text(room_width - global.display_scale_x * 32, global.display_scale_y * 32, fps_now);
+}
 </string>
           </argument>
         </arguments>

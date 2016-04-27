@@ -71,6 +71,7 @@
     <object>objects\obj_controls</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rm_initialization</room>
     <room>rooms\rm_start</room>
     <room>rooms\rm_options</room>
     <room>rooms\rm_highscores</room>

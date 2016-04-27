@@ -8,6 +8,35 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (button_text == "SOUND: ON" || button_text == "FPS: ON") {
+    image_blend = make_colour_rgb(0, 255, 0);
+}
+
+if (button_text == "SOUND: OFF" || button_text == "FPS: OFF") {
+    image_blend = make_colour_rgb(255, 0, 0);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="6" enumb="4">
       <action>
         <libid>1</libid>
@@ -26,7 +55,9 @@
           <argument>
             <kind>1</kind>
             <string>
-if (button_text != "BACK") {
+if (button_text != "BACK" &amp;&amp; button_text != "SOUND: OFF" &amp;&amp;
+    button_text != "SOUND: ON" &amp;&amp; button_text != "FPS: ON" &amp;&amp;
+    button_text != "FPS: OFF") {
     global.last_room = room;
 }
 
@@ -52,6 +83,26 @@ if (button_text == "QUIT") {
 
 if (button_text == "RESTART") {
   room_goto(rm_start);
+}
+
+if (button_text == "SOUND: ON") {
+  global.sound_enabled = false;
+  button_text = "SOUND: OFF";
+}
+
+else if (button_text == "SOUND: OFF") {
+  global.sound_enabled = true;
+  button_text = "SOUND: ON";
+}
+
+if (button_text == "FPS: ON") {
+  global.fps_enabled = false;
+  button_text = "FPS: OFF";
+}
+
+else if (button_text == "FPS: OFF") {
+  global.fps_enabled = true;
+  button_text = "FPS: ON";
 }
 </string>
           </argument>
