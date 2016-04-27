@@ -2,7 +2,7 @@
 
 var new_bullet;
 
-new_bullet = instance_create(0, argument2, argument5);
+new_bullet = instance_create(-1000, argument2, argument5);
 with (new_bullet) {
     theta = argument0;
     dtheta = argument1;

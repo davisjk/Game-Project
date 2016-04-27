@@ -376,15 +376,14 @@ else {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (collision_circle(x-140,y+100,100,other,true,true) || collision_circle(x+140,y+100,100,other,true,true)) {
-    bossHp -= 10;//other.damage;
+            <string>if ((other.x &gt; x-170 &amp;&amp; other.x &lt; x-110) || (other.x &lt; x+170 &amp;&amp; other.x &gt; x+110)) {
+    bossHp -= other.damage;
 } else {
-    bossHp -= 0;//other.damage/5;
+    bossHp -= other.damage/5;
 }
 
 with (other) instance_destroy();
-global.score += (obj_player.damageMult-1)*1000;
-//obj_player.damageMult += .01;
+global.score += other.damage*100;
 </string>
           </argument>
         </arguments>

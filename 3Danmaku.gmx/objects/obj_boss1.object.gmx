@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>x = room_width/2;
 y = 0;
-bossHp = 100;
+bossHp = 0;
 alarm_separation = 10;
 depth = 11;
 //image_xscale = 3;
@@ -376,10 +376,10 @@ else {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (other) instance_destroy();
-global.score += (obj_player.damageMult-1)*1000;
-//obj_player.damageMult += .01;
+            <string>global.score += other.damage*100;
 bossHp -= other.damage;
+with (other) instance_destroy();
+
 </string>
           </argument>
         </arguments>
