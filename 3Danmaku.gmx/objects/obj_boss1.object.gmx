@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>x = room_width/2;
 y = 0;
-bossHp = 0;
+bossHp = 100;
 alarm_separation = 10;
 depth = 11;
 //image_xscale = 3;
@@ -75,12 +75,12 @@ var rand, i, rate;
 rate = 4;
 
 // make random swarm of bullets in various directions
-for (i = 0; i &lt; irandom_range(0, rate-1); i++) {
+for (i = 0; i &lt; irandom_range(0, rate/2); i++) {
     rand[0] = irandom_range(1, 5);
     rand[1] = random_range(1.5, 3);
     scr_bullet_create(random(2*pi), (rand[0]-3)/pi/9/rand[1], 
         y+sprite_height/4, (5-abs(rand[0]-3))*2-rand[1], 
-        rand[1], obj_bullet_enemy, rand[0]+11, round(rand[1])-1);
+        rand[1]/2, obj_bullet_enemy, rand[0]+11, round(rand[1])-1);
 }
 
 // make predictable bullets to dodge
@@ -276,16 +276,16 @@ else
 
 /* Initialize data for a new arc */
 if (startedphase == false || arc_i == 13) {
-  startedphase = true;
-  arc_i = 0;
-  arc_center = random_range(0, 2*pi);
-  dtheta = 0;
-  y0 = y+sprite_height/2-20;
-  bullet_dy = 7;
-  size = 1;
-  obj = obj_bullet_enemy;
-  img = irandom_range(4, 7);
-  dmg = 1;
+    startedphase = true;
+    arc_i = 0;
+    arc_center = random_range(0, 2*pi);
+    dtheta = 0;
+    y0 = y+sprite_height/2-20;
+    bullet_dy = 7;
+    size = 1;
+    obj = obj_bullet_enemy;
+    img = irandom_range(4, 7);
+    dmg = 1;
 }
 
 

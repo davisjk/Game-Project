@@ -193,6 +193,36 @@ if(playerHp &lt;= 0) {
         </arguments>
       </action>
     </event>
+    <event eventtype="4" ename="obj_lazor">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (canBeHit &amp;&amp; position_meeting(x, y, other)) {
+    global.hits += 1;
+    playerHp -= 1;
+    with (heart[playerHp]) instance_destroy();
+    canBeHit = false;
+    damageMult = 1;
+    alarm[0] = iframes;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="4" ename="obj_boss3">
       <action>
         <libid>1</libid>

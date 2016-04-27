@@ -26,12 +26,20 @@
           <argument>
             <kind>1</kind>
             <string>x = room_width/2;
-y = 0;
+y = room_height/4;
 bossHp = 100;
 alarm_separation = 10;
 depth = 11;
-//image_xscale = 3;
-//image_yscale = 3;
+image_xscale = 0.8;
+image_yscale = 0.8;
+bulletPattern = 0;
+lazorz = 3;
+lazorTheta = pi/lazorz-pi/2;
+lazorDTheta = pi/1080;
+ccw = true;
+theta = global.theta;
+moveSpeed = 0.01;
+dy = 2;
 
 alarm[1] = 5;
 
@@ -46,209 +54,6 @@ barOutline.image_yscale = 0.6;
 bulletPattern = 0;
 safespot = 0;
 startedphase = false;
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="3">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Phase 3
-
-var rand, i, rate;
-rate = 4;
-
-// make random swarm of bullets in various directions
-for (i = 0; i &lt; irandom_range(0, rate-1); i++) {
-    rand[0] = irandom_range(1, 5);
-    rand[1] = random_range(1.5, 3);
-    scr_bullet_create(random(2*pi), (rand[0]-3)/pi/9/rand[1], 
-        y+sprite_height/4, (5-abs(rand[0]-3))*2-rand[1], 
-        rand[1], obj_bullet_enemy, rand[0]+11, round(rand[1])-1);
-}
-
-// make predictable bullets to dodge
-if (bulletPattern % (rate*15) == 0) {
-    for (i = 0; i &lt; 30; i++) {
-        if (bulletPattern % (rate*60) == 0) {
-            scr_bullet_create(i*pi/40, 0, y+sprite_height/4, 5, 1, obj_bullet_enemy, 6, 1);
-            scr_bullet_create(pi+i*pi/40, 0, y+sprite_height/4, 5, 1, obj_bullet_enemy, 7, 1);
-        } else if (bulletPattern % (rate*30) == 0) {
-            scr_bullet_create(i*pi/40, 0, y+sprite_height/4, 5, 1, obj_bullet_enemy, 7, 1);
-            scr_bullet_create(pi+i*pi/40, 0, y+sprite_height/4, 5, 1, obj_bullet_enemy, 6, 1);
-        } else if (bulletPattern % (rate*45) == 0) {
-            scr_bullet_create(pi/2+i*pi/40, 0, y+sprite_height/4, 5, 1, obj_bullet_enemy, 7, 1);
-            scr_bullet_create(3*pi/2+i*pi/40, 0, y+sprite_height/4, 5, 1, obj_bullet_enemy, 6, 1);
-        } else {
-            scr_bullet_create(pi/2+i*pi/40, 0, y+sprite_height/4, 5, 1, obj_bullet_enemy, 6, 1);
-            scr_bullet_create(3*pi/2+i*pi/40, 0, y+sprite_height/4, 5, 1, obj_bullet_enemy, 7, 1);
-        }
-    }
-}
-
-bulletPattern += rate;
-alarm[3] = rate;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="2">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Phase 2
-
-var i;
-
-if(bulletPattern == 0)
-{
-    for(i = 0; i &lt; 2*pi; i += pi/8)
-    {
-        scr_bullet_create(i, 0, y+sprite_height/2-20, 7, 1, obj_bullet_enemy, 10, 1);
-    }
-}
-else if(bulletPattern == 1)
-{
-    for(i = pi/24; i &lt; 2*pi; i += pi/8)
-    {
-        scr_bullet_create(i, 0, y+sprite_height/2-20, 7, 1, obj_bullet_enemy, 11, 1);
-    }
-}
-else if(bulletPattern == 2)
-{
-    for(i = 0; i &lt; 2*pi; i += pi/8)
-    {
-        scr_bullet_create(i, 0, y+sprite_height/2-20, 7, 1, obj_bullet_enemy, 9, 1);
-    }
-}
-else if(bulletPattern == 3)
-{
-    for(i = -pi/24; i &lt; 2*pi; i += pi/8)
-    {
-        scr_bullet_create(i, 0, y+sprite_height/2-20, 7, 1, obj_bullet_enemy, 10, 1);
-    }
-}
-else if(bulletPattern == 4)
-{
-    for(i = -pi/12; i &lt; 2*pi; i += pi/8)
-    {
-        scr_bullet_create(i, 0, y+sprite_height/2-20, 7, 1, obj_bullet_enemy, 8, 1);
-    }
-}
-/*
-else if(bulletPattern == 5)
-{
-    scr_bullet_create(global.theta, 0, y+sprite_height/2-20, 7, 5, obj_bullet_enemy, 10, 1);    
-}
-else if(bulletPattern == 6)
-{
-    for(i = 0; i &lt; 2*pi; i += pi/8)
-    {
-        scr_bullet_create(i, 0, y+sprite_height/2-20, 7, 3, obj_bullet_enemy, 8, 1);
-    }
-    //scr_bullet_create(global.theta, 0, y+sprite_height/2-20, 7, 5, obj_bullet_enemy, 10, 1);    
-}
-else if(bulletPattern == 7)
-{
-    scr_bullet_create(global.theta, 0, y+sprite_height/2-20, 7, 5, obj_bullet_enemy, 10, 1);    
-}
-else if(bulletPattern == 8)
-{
-    for(i = pi/24; i &lt; 2*pi; i += pi/8)
-    {
-        scr_bullet_create(i, 0, y+sprite_height/2-20, 7, 3, obj_bullet_enemy, 8, 1);
-    }
-    //scr_bullet_create(global.theta, 0, y+sprite_height/2-20, 7, 5, obj_bullet_enemy, 10, 1);    
-}
-else if(bulletPattern == 9)
-{
-    scr_bullet_create(global.theta, 0, y+sprite_height/2-20, 7, 5, obj_bullet_enemy, 10, 1);    
-}
-else if(bulletPattern == 10)
-{
-    for(i = -pi/12; i &lt; 2*pi; i += pi/8)
-    {
-        scr_bullet_create(i, 0, y+sprite_height/2-20, 7, 3, obj_bullet_enemy, 8, 1);
-    }
-    //scr_bullet_create(global.theta, 0, y+sprite_height/2-20, 7, 5, obj_bullet_enemy, 10, 1);    
-}
-*/
-//Fire ring of bullets
-else if(bulletPattern == 10)//change to 6 above the last time we fired
-{
-    safespot = (global.theta + random_range(pi/2, 3*pi/2)) % (2*pi);
-    for(i = 0; i &lt; 2*pi; i += pi/40)
-    {
-        
-        if(abs(i-safespot) &gt; pi/10 &amp;&amp; abs(i-safespot) &lt; 19*pi/10)
-        {
-            scr_bullet_create(i, 0, y+sprite_height/2-20, 7, 1, obj_bullet_enemy, 5, 1);
-        }
-        else if(abs(i-safespot) &gt; pi/20 &amp;&amp; abs(i-safespot) &lt; 39*pi/20)
-        {
-            scr_bullet_create(i, 0, y+sprite_height/2-20, 7, 1, obj_bullet_enemy, 4, 1);
-        }
-        
-    }
-}
-
-else if (bulletPattern = 12)// always two seconds after the ring
-{
-    scr_bullet_create(safespot + pi/60, 0, y+sprite_height/2-20, 7, 1, obj_bullet_enemy, 5, 1);
-    scr_bullet_create(safespot - pi/60, 0, y+sprite_height/2-20, 7, 1, obj_bullet_enemy, 5, 1);  
-    
-    scr_bullet_create(safespot + pi/20, 0, y+sprite_height/2-20, 7, 1, obj_bullet_enemy, 5, 1);
-    scr_bullet_create(safespot - pi/20, 0, y+sprite_height/2-20, 7, 1, obj_bullet_enemy, 5, 1);    
-}
-
-else if(bulletPattern &gt;= 12)
-{
-    bulletPattern = -1;
-}
-
-if(bossHp &lt; 34 &amp;&amp; (bulletPattern == -1 || (bulletPattern &gt;= 4 &amp;&amp; bulletPattern &lt; 10)))
-{
-    alarm[3] = alarm_separation;
-    bulletPattern = 0;
-}
-else
-{
-    alarm[2] = 10;
-    bulletPattern += 1;
-}
-
-
-
 
 </string>
           </argument>
@@ -274,18 +79,24 @@ else
             <kind>1</kind>
             <string>/// Phase 1
 
+var i, lx = x, ly = y, new_lazor;
+
+for (i = instance_number(obj_lazor)-1; i &gt;= 0; i--) {
+    with (instance_find(obj_lazor,i)) instance_destroy();
+}
+
 /* Initialize data for a new arc */
 if (startedphase == false || arc_i == 13) {
-  startedphase = true;
-  arc_i = 0;
-  arc_center = random_range(0, 2*pi);
-  dtheta = 0;
-  y0 = y+sprite_height/2-20;
-  bullet_dy = 7;
-  size = 1;
-  obj = obj_bullet_enemy;
-  img = irandom_range(4, 7);
-  dmg = 1;
+    startedphase = true;
+    arc_i = 0;
+    arc_center = random_range(0, 2*pi);
+    dtheta = 0;
+    y0 = y+sprite_height/2-20;
+    bullet_dy = 7;
+    size = 1;
+    obj = obj_bullet_enemy;
+    img = irandom_range(4, 7);
+    dmg = 1;
 }
 
 
@@ -296,13 +107,40 @@ if (arc_i &lt; 10) {
 }
 arc_i++; // setup for next arc
 
-/* Reset alarms */
-if(bossHp &lt; 67 &amp;&amp; arc_i == 13)
-{
-    alarm[2] = alarm_separation;
+for (i = 0; i &lt; lazorz; i++) {
+    while (lx &gt;= 0 &amp;&amp; ly &gt;= 0 &amp;&amp; lx &lt;= room_width &amp;&amp; ly &lt;= room_height) {
+        new_lazor = scr_lazor_create(lx, ly, radtodeg(lazorTheta+pi/2));
+        lx += cos(lazorTheta)*new_lazor.sprite_width;
+        ly -= sin(lazorTheta)*new_lazor.sprite_height;
+    }
+    lazorTheta += 2*pi/lazorz;
+    lx = x;
+    ly = y;
 }
-else
-{
+lazorTheta -= 2*pi;
+
+lazorTheta += lazorDTheta;
+
+if (lazorTheta &gt; pi/lazorz-pi/2+pi/lazorz/2 &amp;&amp; ccw) {
+    show_debug_message(string(radtodeg(lazorTheta)));
+    lazorDTheta = -lazorDTheta;
+    ccw = false;
+}
+
+if (lazorTheta &lt; -pi/lazorz+(pi/lazorz-pi/2+pi/lazorz/2) &amp;&amp; !ccw) {
+    show_debug_message(string(radtodeg(lazorTheta)));
+    lazorDTheta = -lazorDTheta;
+    ccw = true;
+    
+    for (i = instance_number(obj_lazor)-1; i &gt;= 0; i--) {
+        with (instance_find(obj_lazor,i)) instance_destroy();
+    }
+    
+    lazorz++;
+    lazorTheta = pi/lazorz-pi/2;
+    alarm[1] = 15;
+}
+else {
     alarm[1] = 1;
 }
 </string>
@@ -328,6 +166,18 @@ else
           <argument>
             <kind>1</kind>
             <string>var animation_speed = .2;
+
+x = (room_width/2) - (sin(global.theta-theta)*(room_width*global.screenWidthRatio/2-sprite_width/2));
+
+if (abs(theta) &gt; pi) {
+    moveSpeed = -moveSpeed
+}
+theta += moveSpeed;
+
+if (y &lt; room_height/4 || y &gt; room_height/3) {
+    dy = -dy;
+}
+y += dy;
 
 barFill.image_xscale = bossHp / 100;
 

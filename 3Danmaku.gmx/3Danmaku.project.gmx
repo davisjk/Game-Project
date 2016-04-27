@@ -26,6 +26,7 @@
     <sprite>sprites\spr_blue_boss_1</sprite>
     <sprite>sprites\spr_blue_boss_2</sprite>
     <sprite>sprites\spr_blue_boss_3</sprite>
+    <sprite>sprites\spr_lazor</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bkg_stars1</background>
@@ -45,6 +46,7 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_bullet_create.gml</script>
+    <script>scripts\scr_lazor_create.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_big_num</font>
@@ -71,6 +73,7 @@
     <object>objects\obj_simple_bullet</object>
     <object>objects\obj_broken_player</object>
     <object>objects\obj_controls</object>
+    <object>objects\obj_lazor</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_start</room>
