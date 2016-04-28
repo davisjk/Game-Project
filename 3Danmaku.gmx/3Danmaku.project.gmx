@@ -74,6 +74,7 @@
     <object>objects\obj_broken_player</object>
     <object>objects\obj_controls</object>
     <object>objects\obj_lazor</object>
+    <object>objects\obj_achievements</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_initialization</room>
@@ -84,6 +85,7 @@
     <room>rooms\rm_level2</room>
     <room>rooms\rm_level3</room>
     <room>rooms\rm_end</room>
+    <room>rooms\rm_upgrades</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
