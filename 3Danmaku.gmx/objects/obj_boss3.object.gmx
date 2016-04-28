@@ -55,6 +55,36 @@ bulletPattern = 0;
 safespot = 0;
 startedphase = false;
 
+//For damage achievement
+hitBy = 0;
+alarm[4] = 1;
+
+//player hasn't been hit yet
+global.player_hit = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>hitBy = 0;
+alarm[4] = room_speed/8;
 </string>
           </argument>
         </arguments>
@@ -184,7 +214,44 @@ barFill.image_xscale = bossHp / 100;
 if (bossHp &lt;= 0) {
     global.victory = true;
     global.score -= round(global.time*10);
-    room_goto(rm_end);
+    
+    //we killed this boss
+    if(!global.achievement_third_kill)
+    {
+        global.upgrade_points += 1;
+        global.achievement_third_kill = true;
+    }
+    
+    //we never got hit
+    if(!global.player_hit &amp;&amp; !global.achievement_ghost)
+    {
+        global.upgrade_points += 1;
+        global.achievement_ghost = true;
+    }
+    
+    //we killed this boss with a score greater than 45000
+    if(global.score &gt; 45000 &amp;&amp; !global.achievement_score_three)
+    {
+        global.upgrade_points += 1;
+        global.achievement_score_three = true;
+    }
+    
+    //we killed this boss in under 120 seconds
+    if(global.time &lt; 120 &amp;&amp; !global.achievement_speed_three)
+    {
+        global.upgrade_points += 1;
+        global.achievement_speed_three = true;
+    }
+    
+    //we didn't move right
+    if(!global.hasMovedRight &amp;&amp; !global.achievement_left)
+    {
+        global.upgrade_points += 1;
+        global.achievement_left = true;
+    }
+    
+    global.next_room = 4; //we won, go to end screen
+    room_goto(rm_upgrades);
 }
 
 /* Boss animation */
@@ -203,6 +270,15 @@ else {
     if (image_angle &lt; -animation_speed*2) image_angle += animation_speed*2;
     else if (image_angle &gt; animation_speed*2) image_angle -= animation_speed*2;
     else image_angle = 0;
+}
+
+if(hitBy &gt;= 5)
+{
+    if(!global.achievement_damage)
+    {
+        global.upgrade_points += 1;
+    }
+    global.achievement_damage = true;
 }
 </string>
           </argument>
@@ -229,6 +305,8 @@ else {
             <string>global.score += other.damage*100;
 bossHp -= other.damage;
 with (other) instance_destroy();
+
+hitBy += 1;
 </string>
           </argument>
         </arguments>

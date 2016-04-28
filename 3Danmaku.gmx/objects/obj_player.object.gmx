@@ -49,6 +49,8 @@ for(i = 0; i &lt; playerHp; i++)
 }
 
 alarm[9] = room_speed;
+
+global.hasMovedRight = false;
 </string>
           </argument>
         </arguments>
@@ -163,6 +165,8 @@ if (keyboard_check_direct(ord("A"))) {
     
     global.theta += move_speed/200;
     background_hspeed[0] = -move_speed/2;
+    
+    global.hasMovedRight = true;
 } else {
     if (image_angle &lt; -animation_speed*2) image_angle += animation_speed*2;
     else if (image_angle &gt; animation_speed*2) image_angle -= animation_speed*2;
@@ -186,8 +190,16 @@ if(playerHp &lt;= 0) {
     playerHp = 3;
     global.victory = false;
     global.score -= round(global.currentBoss.bossHp*100 + global.time*10);
-    room_goto(rm_end);
+    //achievement die completed
+    if(!global.achievement_die)
+    {
+        global.upgrade_points += 1;
+        global.achievement_die = true;
+    }
+    global.next_room = 1; // we lost, go to end screen
+    room_goto(rm_upgrades);
 }
+
 </string>
           </argument>
         </arguments>
@@ -241,6 +253,12 @@ if(playerHp &lt;= 0) {
           <argument>
             <kind>1</kind>
             <string>playerHp = 0;
+
+if(!global.achievement_crash)
+{
+    global.upgrade_points += 1;
+    global.achievement_crash = true;
+}
 </string>
           </argument>
         </arguments>
@@ -264,6 +282,12 @@ if(playerHp &lt;= 0) {
           <argument>
             <kind>1</kind>
             <string>playerHp = 0;
+
+if(!global.achievement_crash)
+{
+    global.upgrade_points += 1;
+    global.achievement_crash = true;
+}
 </string>
           </argument>
         </arguments>
@@ -287,6 +311,12 @@ if(playerHp &lt;= 0) {
           <argument>
             <kind>1</kind>
             <string>playerHp = 0;
+
+if(!global.achievement_crash)
+{
+    global.upgrade_points += 1;
+    global.achievement_crash = true;
+}
 </string>
           </argument>
         </arguments>
@@ -318,6 +348,7 @@ if ((abs(global.theta - other.theta) &lt; pi/2 || abs(global.theta - other.theta
             playerHp -= 1;
             if (playerHp &lt;= 0) continue;
             with (heart[playerHp]) instance_destroy();
+            global.player_hit = true;
         }
         
         canBeHit = false;
@@ -327,6 +358,13 @@ if ((abs(global.theta - other.theta) &lt; pi/2 || abs(global.theta - other.theta
     } else if (other.scraped == false) {
         other.scraped = true;
         damageMult += .01;
+        
+        //Check for achievement scrape
+        if(damageMult &gt;= 1.5 &amp;&amp; !global.achievement_scrape)
+        {
+            global.achievement_scrape = true;
+            global.upgrade_points += 1;
+        }
     }
 }
 </string>

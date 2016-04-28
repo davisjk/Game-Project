@@ -47,6 +47,38 @@ bulletPattern = 0;
 safespot = 0;
 startedphase = false;
 
+
+hitBy = 0; //number of bullets hit the boss recently
+alarm[4] = 1;
+
+//The player hasn't been hit yet
+global.player_hit = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//reset hitBy
+hitBy = 0;
+
+alarm[4] = room_speed/8;
 </string>
           </argument>
         </arguments>
@@ -240,6 +272,12 @@ if(bossHp &lt; 34 &amp;&amp; (bulletPattern == -1 || (bulletPattern &gt;= 4 &amp
 {
     alarm[3] = alarm_separation;
     bulletPattern = 0;
+    //we beat phase 2
+    if(!global.achievement_phase_two)
+    {
+        global.upgrade_points += 1;
+        global.achievement_phase_two = true;
+    }
 }
 else
 {
@@ -300,6 +338,12 @@ arc_i++; // setup for next arc
 if(bossHp &lt; 67 &amp;&amp; arc_i == 13)
 {
     alarm[2] = alarm_separation;
+    //we beat phase 1
+    if(!global.achievement_phase_one)
+    {
+        global.upgrade_points += 1;
+        global.achievement_phase_one = true;
+    }
 }
 else
 {
@@ -334,7 +378,51 @@ barFill.image_xscale = bossHp / 100;
 if (bossHp &lt;= 0) {
     //global.victory = true;
     global.score -= round(global.time*10);
-    room_goto(rm_level2);
+    
+    //we killed this boss
+    if(!global.achievement_first_kill)
+    {
+        global.upgrade_points += 1;
+        global.achievement_first_kill = true;
+    }
+    
+    //we never got hit
+    if(!global.player_hit &amp;&amp; !global.achievement_untouchable)
+    {
+        global.upgrade_points += 1;
+        global.achievement_untouchable = true;
+    }
+    
+    //we killed this boss with a score less than 10000
+    if(global.score &lt; 10000 &amp;&amp; !global.achievement_low_score)
+    {
+        global.upgrade_points += 1;
+        global.achievement_low_score = true;
+    }
+    
+    //we killed this boss with a score greater than 15000
+    if(global.score &gt; 15000 &amp;&amp; !global.achievement_score_one)
+    {
+        global.upgrade_points += 1;
+        global.achievement_score_one = true;
+    }
+    
+    //we killed this boss in under 75 seconds
+    if(global.time &lt; 75 &amp;&amp; !global.achievement_speed_one)
+    {
+        global.upgrade_points += 1;
+        global.achievement_speed_one = true;
+    }
+    
+    //we didn't move right
+    if(!global.hasMovedRight &amp;&amp; !global.achievement_left)
+    {
+        global.upgrade_points += 1;
+        global.achievement_left = true;
+    }
+    
+    global.next_room = 2;
+    room_goto(rm_upgrades);
 }
 
 /* Boss animation */
@@ -353,6 +441,15 @@ else {
     if (image_angle &lt; -animation_speed*2) image_angle += animation_speed*2;
     else if (image_angle &gt; animation_speed*2) image_angle -= animation_speed*2;
     else image_angle = 0;
+}
+
+if(hitBy &gt;= 5)
+{
+    if(!global.achievement_damage)
+    {
+        global.upgrade_points += 1;
+    }
+    global.achievement_damage = true;
 }
 </string>
           </argument>
@@ -379,6 +476,7 @@ else {
             <string>global.score += other.damage*100;
 bossHp -= other.damage;
 with (other) instance_destroy();
+hitBy += 1;
 
 </string>
           </argument>

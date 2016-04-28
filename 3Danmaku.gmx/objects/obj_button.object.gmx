@@ -104,6 +104,21 @@ else if (button_text == "FPS: OFF") {
   global.fps_enabled = true;
   button_text = "FPS: ON";
 }
+
+else if (button_text == "CONTINUE") {
+    if(global.next_room == 2) // go to level 2
+    {
+        room_goto(rm_level2);
+    }
+    else if(global.next_room == 3) // go to level 3
+    {
+        room_goto(rm_level3);
+    }
+    else // go to lose screen
+    {
+        room_goto(rm_end);
+    }
+}
 </string>
           </argument>
         </arguments>

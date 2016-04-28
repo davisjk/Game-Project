@@ -12,6 +12,7 @@
   <showcolour>-1</showcolour>
   <code>global.player_name = "ENTER YOUR NAME";
 
+
 /* Used to scale positioning for smaller screens */
 global.display_scale_x = display_get_width() / 1920;
 global.display_scale_y = display_get_height() / 1080;
@@ -19,6 +20,34 @@ global.display_scale_y = display_get_height() / 1080;
 /* Options */
 global.fps_enabled = false;
 global.sound_enabled = true;
+
+global.achievement_die = false; 
+global.achievement_crash = false; 
+global.achievement_damage = false; 
+global.achievement_left = false; 
+global.achievement_first_kill = false;
+global.achievement_second_kill = false;
+global.achievement_third_kill = false;
+global.achievement_scrape = false;
+global.achievement_score_one = false;
+global.achievement_score_two = false;
+global.achievement_score_three = false;
+global.achievement_phase_one = false;
+global.achievement_phase_two = false;
+global.achievement_speed_one = false;
+global.achievement_speed_two = false;
+global.achievement_speed_three = false;
+global.achievement_low_score = false;
+global.achievement_untouchable = false;
+global.achievement_invincible = false;
+global.achievement_ghost = false;
+
+//global intermediate trackers for many achievements
+global.hasMovedRight = false;
+global.player_hit = false;
+
+global.upgrade_points = 0;
+global.next_room = 1;
 
 room_goto(rm_start);</code>
   <enableViews>0</enableViews>
