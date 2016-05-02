@@ -86,11 +86,17 @@ if (button_text == "RESTART") {
 }
 
 if (button_text == "SOUND: ON") {
+  audio_stop_all()  
+  global.music_playing = false;
   global.sound_enabled = false;
   button_text = "SOUND: OFF";
 }
 
 else if (button_text == "SOUND: OFF") {
+  if (!global.music_playing) {
+    global.music_playing = true
+    audio_play_sound(snd_music4, 10, true)
+  }
   global.sound_enabled = true;
   button_text = "SOUND: ON";
 }
