@@ -25,19 +25,20 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_xscale = .75;
-image_yscale = .75;
+            <string>image_xscale = .5+.25*global.upgrades[3];
+image_yscale = .5+.25*global.upgrades[3];
 
 canBeHit = true;
-iframes = 30;
+iframes = room_speed*global.upgrades[4];
 canPew = true;
 depth = 10;
 x = room_width/2;
 y = 4*room_height/5;
-attackSpeed = 10;
-playerDamage = 1/3;
+attackSpeed = 20/global.upgrades[0];
+playerDamage = global.upgrades[1]/3;
 damageMult = 1;
-playerHp = 3;
+maxHp = 2+global.upgrades[5];
+playerHp = 2+global.upgrades[5];
 
 alarm[1] = attackSpeed;
 
@@ -81,6 +82,34 @@ alarm[9] = room_speed;
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="7">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var i;
+
+i = playerHp;
+playerHp++;
+heart[i] = instance_create(room_width*(1+global.screenWidthRatio)/2 + 128, 400, obj_health_heart);
+heart[i].x += heart[i].sprite_width*(playerHp-i)*3/2;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="1">
       <action>
         <libid>1</libid>
@@ -100,7 +129,7 @@ alarm[9] = room_speed;
             <kind>1</kind>
             <string>var new_bullet;
 if (canPew) {
-    new_bullet = scr_bullet_create(global.theta, 0, y-sprite_height-17, -10, 1, obj_bullet_player, 3, playerDamage*damageMult);
+    new_bullet = scr_bullet_create(global.theta, 0, y-sprite_height-17, -10, 1, obj_bullet_player, 3, playerDamage*damageMult*global.upgrades[2]);
     alarm[1] = attackSpeed;
 }
 
@@ -153,13 +182,13 @@ if (canPew) {
 
 if (keyboard_check_direct(vk_shift)) move_speed /= 2;
 
-if (keyboard_check_direct(ord("A"))) {
+if (keyboard_check_direct(ord("A")) || keyboard_check_direct(vk_left)) {
     if (image_angle &lt; 5) image_angle += animation_speed;
     else image_angle = 5;
     
     global.theta -= move_speed/200;
     background_hspeed[0] = move_speed/2;
-} else if (keyboard_check_direct(ord("D"))) {
+} else if (keyboard_check_direct(ord("D")) || keyboard_check_direct(vk_right)) {
     if (image_angle &gt; -5) image_angle -= animation_speed;
     else image_angle = -5;
     
@@ -174,11 +203,11 @@ if (keyboard_check_direct(ord("A"))) {
     
     background_hspeed[0] = 0;
 }
-if (keyboard_check_direct(ord("W"))) {
+if (keyboard_check_direct(ord("W")) || keyboard_check_direct(vk_up)) {
     y -= move_speed;
     while (y &lt; 0) y++;
 } else 
-if (keyboard_check_direct(ord("S"))) {
+if (keyboard_check_direct(ord("S")) || keyboard_check_direct(vk_down)) {
     y += move_speed;
     while (y &gt; room_height) y--;
 }
@@ -186,8 +215,12 @@ if (keyboard_check_direct(ord("S"))) {
 if (global.theta &gt; 2*pi) global.theta -= 2*pi;
 if (global.theta &lt; 0) global.theta += 2*pi;
 
+if (alarm[7] &lt;= 0 &amp;&amp; playerHp &lt; maxHp) {
+    alarm[7] = room_speed*30/global.upgrades[6];
+}
+
 if(playerHp &lt;= 0) {
-    playerHp = 3;
+    playerHp = maxHp;
     global.victory = false;
     global.score -= round(global.currentBoss.bossHp*100 + global.time*10);
     //achievement die completed
@@ -196,7 +229,7 @@ if(playerHp &lt;= 0) {
         global.upgrade_points += 1;
         global.achievement_die = true;
     }
-    global.next_room = 1; // we lost, go to end screen
+    global.next_room = -1; // we lost, go to end screen
     room_goto(rm_upgrades);
 }
 
@@ -357,7 +390,7 @@ if ((abs(global.theta - other.theta) &lt; pi/2 || abs(global.theta - other.theta
         with (other) instance_destroy();
     } else if (other.scraped == false) {
         other.scraped = true;
-        damageMult += .01;
+        damageMult += .01+.001*global.upgrades[2];
         
         //Check for achievement scrape
         if(damageMult &gt;= 1.5 &amp;&amp; !global.achievement_scrape)
@@ -461,52 +494,6 @@ if (global.fps_enabled) {
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
-      </action>
-    </event>
-    <event eventtype="10" enumb="68">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>movingRight = false;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="10" enumb="65">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>movingLeft = false;
-</string>
-          </argument>
-        </arguments>
       </action>
     </event>
   </events>

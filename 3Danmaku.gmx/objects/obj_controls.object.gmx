@@ -37,7 +37,7 @@ draw_set_halign(fa_left);
 draw_text(global.display_scale_x * room_width/4, 100, "CONTROLS");
 
 draw_set_font(-1);
-draw_text(global.display_scale_x * room_width/4 + 10, 150, "WASD - Movement");
+draw_text(global.display_scale_x * room_width/4 + 10, 150, "WASD or Arrow Keys - Movement");
 draw_text(global.display_scale_x * room_width/4 + 10, 175, "SHIFT - Halve your movement speed");
 draw_text(global.display_scale_x * room_width/4 + 10, 200, "Q/ESC - Quit the game");
 

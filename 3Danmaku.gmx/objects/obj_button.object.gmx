@@ -85,6 +85,11 @@ if (button_text == "RESTART") {
   room_goto(rm_start);
 }
 
+if (button_text == "UPGRADES") {
+  global.next_room = 1;
+  room_goto(rm_upgrades);
+}
+
 if (button_text == "SOUND: ON") {
   global.sound_enabled = false;
   button_text = "SOUND: OFF";
@@ -106,7 +111,11 @@ else if (button_text == "FPS: OFF") {
 }
 
 else if (button_text == "CONTINUE") {
-    if(global.next_room == 2) // go to level 2
+    if(global.next_room == 1) // go to level 1
+    {
+        room_goto(rm_level1);
+    }
+    else if(global.next_room == 2) // go to level 2
     {
         room_goto(rm_level2);
     }

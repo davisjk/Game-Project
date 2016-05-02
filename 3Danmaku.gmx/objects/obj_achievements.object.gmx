@@ -29,101 +29,98 @@
 draw_set_valign(fa_center);
 draw_set_halign(fa_center);
 draw_set_font(fnt_big_num);
-spacing_index = 50; // this can be updated to change where text whould appear(vertically)
+spacing_index = 50*global.display_scale_y; // this can be updated to change where text whould appear(vertically)
 
 draw_text(global.display_scale_x * room_width/2, spacing_index, "Achievements and Upgrades");
-spacing_index += 50;
+spacing_index += 100*global.display_scale_y;
 
 draw_set_halign(fa_left);
-draw_text(global.display_scale_x * room_width/4, spacing_index, "Upgrades");
-spacing_index += 150;
-
-
-
 draw_set_font(fnt_big_num);
-draw_text(global.display_scale_x * room_width/4, spacing_index, "Achievements");
-spacing_index += 50
+draw_text(global.display_scale_x * room_width/6, spacing_index, "Achievements");
+draw_text(global.display_scale_x * room_width/2, spacing_index, "Upgrades");
+spacing_index += 50*global.display_scale_y;
 
 draw_set_font(-1);
 if(global.achievement_die) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/4 + 10, spacing_index, "Die to any boss");
-spacing_index += 25;
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Die to any boss");
+draw_text(global.display_scale_x * room_width/2 + 10, spacing_index, "Upgrade Points: " + string(global.upgrade_points));
+spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_crash) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/4 + 10, spacing_index, "Die to any boss by crashing into them");
-spacing_index += 25;
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Die to any boss by crashing into them");
+spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_damage) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/4 + 10, spacing_index, "Deal five bullets worth of damage at one time");
-spacing_index += 25;
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Deal five bullets worth of damage at one time");
+spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_scrape) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/4 + 10, spacing_index, "scrape 50 bullets in a row without getting hit");
-spacing_index += 25;
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Scrape 50 bullets in a row without getting hit");
+spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_left) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/4 + 10, spacing_index, "Beat any boss by never moving right");
-spacing_index += 25;
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Beat any boss by never moving right");
+spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_phase_one) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/4 + 10, spacing_index, "Survive the first phase of the first boss");
-spacing_index += 25;
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Survive the first phase of the first boss");
+spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_phase_two) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/4 + 10, spacing_index, "Survive the second phase of the first boss");
-spacing_index += 25;
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Survive the second phase of the first boss");
+spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_first_kill) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/4 + 10, spacing_index, "Defeat the first boss");
-spacing_index += 25;
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Defeat the first boss");
+spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_second_kill) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/4 + 10, spacing_index, "Defeat the second boss");
-spacing_index += 25;
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Defeat the second boss");
+spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_third_kill) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/4 + 10, spacing_index, "Defeat the third boss");
-spacing_index += 25;
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Defeat the third boss");
+spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_low_score) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/4 + 10, spacing_index, "Beat the first boss with a score of less than 10000");
-spacing_index += 25;
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Beat the first boss with a score of less than 10000");
+spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_score_one) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/4 + 10, spacing_index, "Beat the first boss with a score greater than 15000");
-spacing_index += 25;
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Beat the first boss with a score greater than 15000");
+spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_score_two) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/4 + 10, spacing_index, "Beat the second boss with a score greater than 30000");
-spacing_index += 25;
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Beat the second boss with a score greater than 30000");
+spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_score_three) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/4 + 10, spacing_index, "Beat the third boss with a score greater than 45000");
-spacing_index += 25;
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Beat the third boss with a score greater than 45000");
+spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_speed_one) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/4 + 10, spacing_index, "Beat the first boss in under 75 seconds");
-spacing_index += 25;
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Beat the first boss in under 75 seconds");
+spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_speed_two) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/4 + 10, spacing_index, "Beat the second boss in under 90 seconds");
-spacing_index += 25;
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Beat the second boss in under 90 seconds");
+spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_speed_three) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/4 + 10, spacing_index, "Beat the third boss in under 120 seconds");
-spacing_index += 25;
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Beat the third boss in under 120 seconds");
+spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_untouchable) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/4 + 10, spacing_index, "Defeat the first boss without getting hit");
-spacing_index += 25;
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Defeat the first boss without getting hit");
+spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_invincible) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/4 + 10, spacing_index, "Defeat the second boss without getting hit");
-spacing_index += 25;
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Defeat the second boss without getting hit");
+spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_ghost) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/4 + 10, spacing_index, "Defeat the third boss without getting hit");
-spacing_index += 25;
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Defeat the third boss without getting hit");
+spacing_index += 25*global.display_scale_y;
 
 
 

@@ -21,6 +21,7 @@ global.display_scale_y = display_get_height() / 1080;
 global.fps_enabled = false;
 global.sound_enabled = true;
 
+/* Achievements */
 global.achievement_die = false; 
 global.achievement_crash = false; 
 global.achievement_damage = false; 
@@ -42,11 +43,20 @@ global.achievement_untouchable = false;
 global.achievement_invincible = false;
 global.achievement_ghost = false;
 
+/* Upgrades */
+global.upgrade_points = 0;
+global.upgrades[6] = 1; // regen
+global.upgrades[5] = 1; // hp
+global.upgrades[4] = 1; // iframes
+global.upgrades[3] = 1; // scale
+global.upgrades[2] = 1; // bullets
+global.upgrades[1] = 1; // damage
+global.upgrades[0] = 1; // attack speed
+
 //global intermediate trackers for many achievements
 global.hasMovedRight = false;
 global.player_hit = false;
 
-global.upgrade_points = 0;
 global.next_room = 1;
 
 room_goto(rm_start);</code>

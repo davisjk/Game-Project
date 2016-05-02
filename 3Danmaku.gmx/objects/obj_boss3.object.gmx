@@ -27,15 +27,16 @@
             <kind>1</kind>
             <string>x = room_width/2;
 y = room_height/4;
-bossHp = 100;
+maxHp = 500;
+bossHp = 500;
 alarm_separation = 10;
 depth = 11;
 image_xscale = 0.8;
 image_yscale = 0.8;
 bulletPattern = 0;
-lazorz = 3;
+lazorz = 6;
 lazorTheta = pi/lazorz-pi/2;
-lazorDTheta = pi/1080;
+lazorDTheta = pi/720;
 ccw = true;
 theta = global.theta;
 moveSpeed = 0.01;
@@ -209,7 +210,7 @@ if (y &lt; room_height/4 || y &gt; room_height/3) {
 }
 y += dy;
 
-barFill.image_xscale = bossHp / 100;
+barFill.image_xscale = bossHp / maxHp;
 
 if (bossHp &lt;= 0) {
     global.victory = true;

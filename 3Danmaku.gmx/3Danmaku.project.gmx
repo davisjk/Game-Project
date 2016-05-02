@@ -75,6 +75,7 @@
     <object>objects\obj_controls</object>
     <object>objects\obj_lazor</object>
     <object>objects\obj_achievements</object>
+    <object>objects\obj_upgrade</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_initialization</room>

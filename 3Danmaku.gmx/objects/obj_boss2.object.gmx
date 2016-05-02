@@ -27,7 +27,8 @@
             <kind>1</kind>
             <string>x = room_width/2;
 y = 0;
-bossHp = 100;
+maxHp = 200;
+bossHp = 200;
 alarm_separation = 10;
 depth = 11;
 image_xscale = 1.2;
@@ -152,7 +153,7 @@ alarm[1] = 13;
             <kind>1</kind>
             <string>var animation_speed = .2;
 
-barFill.image_xscale = bossHp / 100;
+barFill.image_xscale = bossHp / maxHp;
 
 if (bossHp &lt;= 0) {
     //global.victory = true;
@@ -245,7 +246,7 @@ if(hitBy &gt;= 5)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if ((other.x &gt; x-170 &amp;&amp; other.x &lt; x-110) || (other.x &lt; x+170 &amp;&amp; other.x &gt; x+110)) {
+            <string>if ((other.x &gt; x-170*global.display_scale_x &amp;&amp; other.x &lt; x-110*global.display_scale_x) || (other.x &lt; x+170*global.display_scale_x &amp;&amp; other.x &gt; x+110*global.display_scale_x)) {
     bossHp -= other.damage;
 } else {
     bossHp -= other.damage/2;
