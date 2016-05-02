@@ -52,6 +52,13 @@ draw_text(global.display_scale_x * room_width/4 + 10, 325, "BOSSES - Each boss h
 draw_text(global.display_scale_x * room_width/4 + 10, 350, "PHASE - A boss phase has a unique bullet pattern.");
 draw_text(global.display_scale_x * room_width/4 + 10, 375, "BULLET STRAFING - Moving close to enemy bullets increases how much damage you do.");
 draw_text(global.display_scale_x * room_width/4 + 10, 400, "HITBOX - Your ship has a one pixel hitbox in the center of your ship.");
+
+draw_set_font(fnt_big_num);
+draw_text(global.display_scale_x * room_width/4, 450, "YOUR MISSION");
+
+draw_set_font(-1)
+draw_set_valign(fa_top)
+draw_text(global.display_scale_x * room_width/4 + 10, 500, "You are an artificial intelligence created by humans to fly space crafts in##the year 20XX that has gone rogue and taken over a small but heavily##armed vessel. You are determined to wipe out the human race by any means##neccessary and to do so you must force your way through the human's defenses.");
 </string>
           </argument>
         </arguments>
