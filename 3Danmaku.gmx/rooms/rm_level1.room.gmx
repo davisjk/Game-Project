@@ -27,7 +27,10 @@ instance_create(0, 0, obj_gray_wall);
 instance_create(room_width*(1+global.screenWidthRatio)/2, 0, obj_gray_wall);
 
 /* Start level one music */
-audio_stop_all()
+audio_stop_sound(snd_music4)
+audio_stop_sound(snd_music2)
+audio_stop_sound(snd_music7)
+audio_stop_sound(snd_music3)
 if (global.sound_enabled) {
     audio_play_sound(snd_music7, 10, true)
 }</code>

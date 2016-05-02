@@ -230,8 +230,11 @@ if(playerHp &lt;= 0) {
     canBeHit = false;
     damageMult = 1;
     alarm[0] = iframes;
-    sound_volume(snd_lose_life, 0.25)
-    audio_play_sound(snd_lose_life, 10, false)
+    
+    if (global.sound_enabled) {
+        sound_volume(snd_lose_life, 0.25)
+        audio_play_sound(snd_lose_life, 10, false)
+    }
 }
 </string>
           </argument>
@@ -354,8 +357,10 @@ if ((abs(global.theta - other.theta) &lt; pi/2 || abs(global.theta - other.theta
             global.player_hit = true;
         }
         
-        sound_volume(snd_lose_life, 0.25)
-        audio_play_sound(snd_lose_life, 10, false)
+        if (global.sound_enabled) {
+            sound_volume(snd_lose_life, 0.25)
+            audio_play_sound(snd_lose_life, 10, false)
+        }
         
         canBeHit = false;
         damageMult = 1;
