@@ -352,9 +352,10 @@ if ((abs(global.theta - other.theta) &lt; pi/2 || abs(global.theta - other.theta
             if (playerHp &lt;= 0) continue;
             with (heart[playerHp]) instance_destroy();
             global.player_hit = true;
-            sound_volume(snd_lose_life, 0.25)
-            audio_play_sound(snd_lose_life, 10, false)
         }
+        
+        sound_volume(snd_lose_life, 0.25)
+        audio_play_sound(snd_lose_life, 10, false)
         
         canBeHit = false;
         damageMult = 1;

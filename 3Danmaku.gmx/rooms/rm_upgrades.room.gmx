@@ -11,7 +11,11 @@
   <colour>12632256</colour>
   <showcolour>-1</showcolour>
   <code>/* Start background music */
-audio_stop_all()
+audio_stop_sound(snd_music4)
+audio_stop_sound(snd_music2)
+audio_stop_sound(snd_music7)
+audio_stop_sound(snd_music3)
+
 if (global.sound_enabled) {
     audio_play_sound(snd_music4, 10, true)
     global.music_playing = true
