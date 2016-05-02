@@ -187,6 +187,7 @@ if (global.theta &gt; 2*pi) global.theta -= 2*pi;
 if (global.theta &lt; 0) global.theta += 2*pi;
 
 if(playerHp &lt;= 0) {
+    
     playerHp = 3;
     global.victory = false;
     global.score -= round(global.currentBoss.bossHp*100 + global.time*10);
@@ -229,6 +230,8 @@ if(playerHp &lt;= 0) {
     canBeHit = false;
     damageMult = 1;
     alarm[0] = iframes;
+    sound_volume(snd_lose_life, 0.25)
+    audio_play_sound(snd_lose_life, 10, false)
 }
 </string>
           </argument>
@@ -349,6 +352,8 @@ if ((abs(global.theta - other.theta) &lt; pi/2 || abs(global.theta - other.theta
             if (playerHp &lt;= 0) continue;
             with (heart[playerHp]) instance_destroy();
             global.player_hit = true;
+            sound_volume(snd_lose_life, 0.25)
+            audio_play_sound(snd_lose_life, 10, false)
         }
         
         canBeHit = false;
