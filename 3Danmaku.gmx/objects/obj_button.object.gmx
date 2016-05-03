@@ -54,7 +54,10 @@ if (button_text == "SOUND: OFF" || button_text == "FPS: OFF") {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>if (global.sound_enabled) {
+    audio_play_sound(snd_button, 10, false)
+}
+
 if (button_text != "BACK" &amp;&amp; button_text != "SOUND: OFF" &amp;&amp;
     button_text != "SOUND: ON" &amp;&amp; button_text != "FPS: ON" &amp;&amp;
     button_text != "FPS: OFF") {
@@ -91,11 +94,18 @@ if (button_text == "UPGRADES") {
 }
 
 if (button_text == "SOUND: ON") {
+  audio_stop_all()  
+  global.music_playing = false;
   global.sound_enabled = false;
   button_text = "SOUND: OFF";
 }
 
 else if (button_text == "SOUND: OFF") {
+  if (!global.music_playing) {
+    global.music_playing = true
+    audio_play_sound(snd_music4, 10, true)
+    audio_play_sound(snd_button, 10, false)
+  }
   global.sound_enabled = true;
   button_text = "SOUND: ON";
 }

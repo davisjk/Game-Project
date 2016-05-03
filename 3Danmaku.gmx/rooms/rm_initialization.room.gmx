@@ -12,7 +12,6 @@
   <showcolour>-1</showcolour>
   <code>global.player_name = "ENTER YOUR NAME";
 
-
 /* Used to scale positioning for smaller screens */
 global.display_scale_x = display_get_width() / 1920;
 global.display_scale_y = display_get_height() / 1080;
@@ -20,6 +19,10 @@ global.display_scale_y = display_get_height() / 1080;
 /* Options */
 global.fps_enabled = false;
 global.sound_enabled = true;
+
+/* Start music */
+audio_play_sound(snd_music4, 10, true)
+global.music_playing = true;
 
 /* Achievements */
 global.achievement_die = false; 

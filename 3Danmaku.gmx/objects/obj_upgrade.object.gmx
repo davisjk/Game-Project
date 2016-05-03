@@ -71,7 +71,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (canClick &amp;&amp; global.upgrades[upgrade_num] &gt; 1) {
+            <string>if (global.sound_enabled) {
+    audio_play_sound(snd_button, 10, false)
+}
+
+if (canClick &amp;&amp; global.upgrades[upgrade_num] &gt; 1) {
     global.upgrades[upgrade_num]--;
     global.upgrade_points++;
     canClick = false;
@@ -99,7 +103,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (canClick &amp;&amp; global.upgrade_points &gt; 0) {
+            <string>if (global.sound_enabled) {
+    audio_play_sound(snd_button, 10, false)
+}
+
+if (canClick &amp;&amp; global.upgrade_points &gt; 0) {
     global.upgrades[upgrade_num]++;
     global.upgrade_points--;
     canClick = false;

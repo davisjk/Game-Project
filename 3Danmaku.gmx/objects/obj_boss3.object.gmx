@@ -167,6 +167,9 @@ if (lazorTheta &lt; -pi/lazorz+(pi/lazorz-pi/2+pi/lazorz/2) &amp;&amp; !ccw) {
         with (instance_find(obj_lazor,i)) instance_destroy();
     }
     
+    if (global.sound_enabled) {
+        audio_play_sound(snd_laser, 10, false)
+    }
     lazorz++;
     lazorTheta = pi/lazorz-pi/2;
     alarm[1] = 15;

@@ -24,7 +24,16 @@ global.time = 0;
 instance_create(0, 0, obj_boss2);
 instance_create(0, 0, obj_player);
 instance_create(0, 0, obj_gray_wall);
-instance_create(room_width*(1+global.screenWidthRatio)/2, 0, obj_gray_wall);</code>
+instance_create(room_width*(1+global.screenWidthRatio)/2, 0, obj_gray_wall);
+
+/* Start level two music */
+audio_stop_sound(snd_music4)
+audio_stop_sound(snd_music2)
+audio_stop_sound(snd_music7)
+audio_stop_sound(snd_music3)
+if (global.sound_enabled) {
+    audio_play_sound(snd_music2, 10, true)
+}</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>

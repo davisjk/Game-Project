@@ -262,6 +262,11 @@ if(playerHp &lt;= 0) {
     canBeHit = false;
     damageMult = 1;
     alarm[0] = iframes;
+    
+    if (global.sound_enabled) {
+        sound_volume(snd_lose_life, 0.25)
+        audio_play_sound(snd_lose_life, 10, false)
+    }
 }
 </string>
           </argument>
@@ -384,6 +389,11 @@ if ((abs(global.theta - other.theta) &lt; pi/2 || abs(global.theta - other.theta
             global.player_hit = true;
         }
         
+        if (global.sound_enabled) {
+            sound_volume(snd_lose_life, 0.25)
+            audio_play_sound(snd_lose_life, 10, false)
+        }
+        
         canBeHit = false;
         damageMult = 1;
         alarm[0] = iframes;
@@ -422,10 +432,12 @@ if ((abs(global.theta - other.theta) &lt; pi/2 || abs(global.theta - other.theta
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var new_bullet;
+            <string>/// Dev cheat
+
+/*var new_bullet;
 if (canPew) {
     new_bullet = scr_bullet_create(global.theta, 0, y-sprite_height-17, -10, 5, obj_bullet_player, 3, playerDamage*damageMult);
-}
+}*/
 
 </string>
           </argument>
