@@ -394,14 +394,14 @@ if (bossHp &lt;= 0) {
     }
     
     //we killed this boss with a score less than 10000
-    if(global.score &lt; 10000 &amp;&amp; !global.achievement_low_score)
+    if(global.score &lt; 9000 &amp;&amp; !global.achievement_low_score)
     {
         global.upgrade_points += 1;
         global.achievement_low_score = true;
     }
     
     //we killed this boss with a score greater than 15000
-    if(global.score &gt; 15000 &amp;&amp; !global.achievement_score_one)
+    if(global.score &gt; 10000 &amp;&amp; !global.achievement_score_one)
     {
         global.upgrade_points += 1;
         global.achievement_score_one = true;

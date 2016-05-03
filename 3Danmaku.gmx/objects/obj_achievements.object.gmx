@@ -83,11 +83,11 @@ draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Defeat the
 spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_low_score) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Beat the first boss with a score of less than 10000");
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Beat the first boss with a score of less than 9000");
 spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_score_one) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Beat the first boss with a score greater than 15000");
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Beat the first boss with a score greater than 10000");
 spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_score_two) { draw_set_color(c_red); } else { draw_set_color(c_white); }

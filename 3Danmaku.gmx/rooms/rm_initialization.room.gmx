@@ -11,6 +11,7 @@
   <colour>12632256</colour>
   <showcolour>-1</showcolour>
   <code>global.player_name = "ENTER YOUR NAME";
+global.victory = false;
 
 /* Used to scale positioning for smaller screens */
 global.display_scale_x = display_get_width() / 1920;
