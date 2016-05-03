@@ -29,7 +29,7 @@
     audio_play_sound(snd_button, 10, false)
 }
 
-if (canClick &amp;&amp; global.upgrades[upgrade_num] &gt; 1) {
+if (global.upgrades[upgrade_num] &gt; 1) {
     global.upgrades[upgrade_num]--;
     global.upgrade_points++;
 }
@@ -59,7 +59,7 @@ if (canClick &amp;&amp; global.upgrades[upgrade_num] &gt; 1) {
     audio_play_sound(snd_button, 10, false)
 }
 
-if (canClick &amp;&amp; global.upgrade_points &gt; 0) {
+if (global.upgrade_points &gt; 0) {
     global.upgrades[upgrade_num]++;
     global.upgrade_points--;
 }
