@@ -55,7 +55,7 @@ draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Deal five 
 spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_scrape) { draw_set_color(c_red); } else { draw_set_color(c_white); }
-draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Scrape 50 bullets in a row without getting hit");
+draw_text(global.display_scale_x * room_width/6 + 10, spacing_index, "Get a scrape multiplier or 2.5 or higher");
 spacing_index += 25*global.display_scale_y;
 
 if(global.achievement_left) { draw_set_color(c_red); } else { draw_set_color(c_white); }
